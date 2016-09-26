@@ -1,0 +1,9 @@
+AndorSebo - Szempontok:
+1. Milyen környezetrõl van szó? Jelenlegi helyzet
+2. Cél - Amit a megrendelõ elmondott. *
+3. Környezeti feltételek - törvényi szabályozások.
+4. Jelenlegi folyamatok
+5. Elképzelt / Megvalósítandó folyamatok *
+6. Követelmény lista *
+
+*-fontos
