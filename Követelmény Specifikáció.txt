@@ -1,9 +1,17 @@
 AndorSebo - Szempontok:   
 1. Milyen környezetrõl van szó? Jelenlegi helyzet
+	- A programot / játékot a Unity grafikus motor segítségével készítjük el és fejlesszük tovább igény szerint Android platformra
+	de egyaránt kiadható Windows operációs rendszerrel rendelkezõ gépekre.
+	- Ennek a jelenlegi helyzete a tervezés és az ötlet gyûjtés elkezdõdött a "grafikus" elemek össze szedésével egyetemben.
 2. Cél - Amit a megrendelõ elmondott. *
+
 3. Környezeti feltételek - törvényi szabályozások.
+
 4. Jelenlegi folyamatok
+	- A program szerkezeti felépítésének megtervezése megkezdõdött. Amellett , hogy a grafikus elemeket is össze szedjük.
+	
 5. Elképzelt / Megvalósítandó folyamatok *
+
 6. Követelmény lista *
 
 *-fontos
