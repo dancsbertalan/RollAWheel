@@ -1,0 +1,8 @@
+Ingyenes texturák letölthetõek az alábbi oldalakról:
+	1. - http://opengameart.org/
+	2. - http://kenney.nl/
+	3. - http://www.gameart2d.com/
+
+További segéd anyagok:
+	1. - http://www.color-hex.com/ - egyszerûen kereshetsz színet és az azzokhoz tartozók kódot
+	2. - https://color.adobe.com/ - könnyû szín keverésére , vagy adott esetben témák keresésére alkalmas
