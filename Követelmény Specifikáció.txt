@@ -4,14 +4,17 @@ AndorSebo - Szempontok:
 	de egyaránt kiadható Windows operációs rendszerrel rendelkezõ gépekre.
 	- Ennek a jelenlegi helyzete a tervezés és az ötlet gyûjtés elkezdõdött a "grafikus" elemek össze szedésével egyetemben.
 2. Cél - Amit a megrendelõ elmondott. *
-
+	- A megrendelõ kérésére a programnak az lenne a célja ,hogy egyaránt a nagyokat és a kicsiket is szórakoztassuk el egy 	szimpla kerékkel és annak "utazásaival"
+	különbözõ földeken , különbözõ kihívásokkal. 
+	- Mindezt tovább fényeítené a különbözõ hátterek , különbözõ földek / "tájak" de ha még ez se volna elég akkor a kerék
+	kinézeteit is cserélgethetjük majd ezzel viccesebbé téve egy kicsit a játékot.
 3. Környezeti feltételek - törvényi szabályozások.
 
 4. Jelenlegi folyamatok
 	- A program szerkezeti felépítésének megtervezése megkezdõdött. Amellett , hogy a grafikus elemeket is össze szedjük.
 	
 5. Elképzelt / Megvalósítandó folyamatok *
-
+	- 
 6. Követelmény lista *
 
 *-fontos
