@@ -1,8 +1,9 @@
-Ingyenes texturák letölthetõek az alábbi oldalakról:
+Ingyenes texturÃ¡k letÃ¶lthetÅ‘ek az alÃ¡bbi oldalakrÃ³l:
 	1. - http://opengameart.org/
 	2. - http://kenney.nl/
 	3. - http://www.gameart2d.com/
 
-További segéd anyagok:
-	1. - http://www.color-hex.com/ - egyszerûen kereshetsz színet és az azzokhoz tartozók kódot
-	2. - https://color.adobe.com/ - könnyû szín keverésére , vagy adott esetben témák keresésére alkalmas
+TovÃ¡bbi segÃ©d anyagok:
+	1. - http://www.color-hex.com/ - egyszerÅ±en kereshetsz szÃ­net Ã©s az azzokhoz tartozÃ³k kÃ³dot
+	2. - https://color.adobe.com/ - kÃ¶nnyÅ± szÃ­n keverÃ©sÃ©re , vagy adott esetben tÃ©mÃ¡k keresÃ©sÃ©re alkalmas
+	3. - http://gamedev.stackexchange.com/questions/8706/drawing-large-2d-sidescroller-level-terrain - pÃ¡lya rajzolÃ¡sa PhotoShoppal
