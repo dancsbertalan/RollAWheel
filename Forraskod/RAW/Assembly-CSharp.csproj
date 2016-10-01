@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\_Szkriptek\_gombVezerlo.cs" />
      <Compile Include="Assets\_Szkriptek\_hatterMozgato.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Programok/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
