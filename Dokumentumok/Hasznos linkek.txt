@@ -2,7 +2,12 @@ Ingyenes texturák letölthetőek az alábbi oldalakról:
 	1. - http://opengameart.org/
 	2. - http://kenney.nl/
 	3. - http://www.gameart2d.com/
+	4. - https://clara.io/
 
+Ingyenes hangeffektek/háttér zenék:
+	1. - https://www.youtube.com/user/NoCopyrightSounds/videos
+	2. - http://soundbible.com/
+	
 További segéd anyagok:
 	1. - http://www.color-hex.com/ - egyszerűen kereshetsz színet és az azzokhoz tartozók kódot
 	2. - https://color.adobe.com/ - könnyű szín keverésére , vagy adott esetben témák keresésére alkalmas

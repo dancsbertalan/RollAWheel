@@ -7,7 +7,7 @@ Első verzió - 1.0 - A verzió ötlet ládájának nyitása: 2016.09.26 (Hétf�
   - Szimpla mód , amikor a coinokat gyűjthetjük. - iMager85
   - Time race mód , amikor magunk ellen versenyezhetünk. - iMager85
 - Minimalista dizájn a pályákon és a kerekeken egyaránt - iMager85
-- Több kerék "skin" - melyet bizonyos pályák után vagy jábék beli pénzel oldhatunk fel - iMager85
+- Több kerék "skin" - melyet játék beli pénzel oldhatunk fel - iMager85
 
 Első verzió - 1.0 - A verzió ötlet ládájának zárása: 2016.09.29 (Csütörtök) - 17:18
 
