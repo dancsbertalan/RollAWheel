@@ -23,6 +23,23 @@ ___________________________________________________|
 	- Minden olyan program mely ezen szoftver elkészítését szolgálta az is ingyenesen felhasználható.
 		- Gimp, Unity - Personal Edition, GitHub, Photoshop próba verzió.
 	- Nyílt forráskódúság -> bárki felhasználhassa a kódot de ha ezt megteszi mindenképpen fel kell tüntetnie a Mi nevünket is illetve az eredeti kód elérhetõségét. (Ezt a repo linket).
+
+A program nyílt forráskódú licenc ami nem egyenlõ a szabad szoftveres licenccel. Ennek következményében az alábbi szabályozások érvényesek.
+
+Pusztán az a tény, hogy a szoftver kódja megismerhetõ, nem minõsíti a szoftvert szabad forráskódúvá, csak nyílt forráskódúvá. Ebben az esetben a szoftver licenc kódját nyilvánosságra hozzuk, és az alábbi jogosultságokat engedéjezzük:
+
+-felhasználható, (futtatható);
+-tanulmányozható; mûködését (forráskódját) megvizsgálhatja bárki;
+-módosítható (DE, fel kell tüntetnie az eredeti forráskódot és azok szerzõit), a módosított változatokat publikálhatja.
+
+A módostás alapvetõ következményei:
+
+  A „szabad” nem feltétlenül jelent „ingyenest”: bárki bármennyiért árusíthatja a kérdéses 	programot, az egyetlen feltétel, hogy az FSF által meghatározott alábbi négy 		alapjogot garantálja vevõi számra.
+ a) A program bármilyen céllal történõ futtatásának, felhasználásának joga.
+ b) A szabad tanulmányozhatóság és igény szerinti módosíthatósághoz való jog, valamint jog 	arra, hogy a szoftvert a szükségletekhez igazíthassák. Ennek elõfeltétele a 		forráskódhoz való hozzáférhetõség.
+ c) A másolatok szabad terjeszthetõsége.
+ d) A szoftver tökéletesítésének, módosításának joga, valamint ezen javított kiadás – az 		közösség javát szolgáló – közzétételének joga. Ennek szintén elõfeltétele a 		forráskód elérhetõsége.
+ e) Az eredeti kód szerzõ(inek) feltüntetése.
 ________________________
 4. Jelenlegi folyamatok |
 ________________________|
