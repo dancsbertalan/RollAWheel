@@ -5,17 +5,7 @@ public class _gombVezerlo : MonoBehaviour
 {
 
     #region METÓDUSOK
-    // use this for initialization
-    void start()
-    {
-    }
-
-    // update is called once per frame
-    void update()
-    {
-
-    }
-
+   
     public void Kilepes()
     {
         Application.Quit();
@@ -46,6 +36,12 @@ public class _gombVezerlo : MonoBehaviour
         //betöltjük a kinézet választó jelenetet
         FoMenureBeallit();
         Application.LoadLevel("_kinezetek");
+    }
+    
+    public void Szimpla()
+    {
+        FoMenureBeallit();
+        Application.LoadLevel("_tesztPalya");
     }
 
     #region METÓDUSOK MELYEKET KIVÜL NEM HASZNÁLUNK
