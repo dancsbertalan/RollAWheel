@@ -14,57 +14,55 @@ public class _gombVezerlo : MonoBehaviour
 
     public void Vissza()
     {
-        Application.LoadLevel(Elozo);
+        if (Application.loadedLevelName == "_beallitasok" || Application.loadedLevelName == "_kinezetek" || Application.loadedLevelName == "_modValaszto")
+        {
+            Application.LoadLevel("_foMenu");
+        }
+        else if (Application.loadedLevelName == "_palyaValaszto")
+        {
+            Application.LoadLevel("_modValaszto");
+        }
     }
 
     public void Jatek()
     {
         //betöltjük a játék mód választó jelenetet
-        FoMenureBeallit();
         Application.LoadLevel("_modValaszto");
     }
 
     public void Beallitasok()
     {
         //betöltjük a beállítások jelenetét
-        FoMenureBeallit();
         Application.LoadLevel("_beallitasok");
     }
 
     public void Kinezetek()
     {
         //betöltjük a kinézet választó jelenetet
-        FoMenureBeallit();
         Application.LoadLevel("_kinezetek");
     }
     
-    public void Szimpla()
+    public void SzimplaMod()
     {
-        FoMenureBeallit();
-        Application.LoadLevel("_tesztPalya");
+        Application.LoadLevel("_palyaValaszto");
+        //Application.LoadLevel("_tesztPalya");
     }
 
-    #region METÓDUSOK MELYEKET KIVÜL NEM HASZNÁLUNK
-    private void FoMenureBeallit()
+    public void IdoMod()
     {
-        Elozo = "_foMenu";
+        Application.LoadLevel("_palyaValaszto");
     }
-    #endregion
+
+
+
+    
 
     #endregion
 
     #region PROPERTYK
-    public static string Elozo
-    {
-        get { return _gombVezerlo._elozo; }
-        private set { _gombVezerlo._elozo = value; }
-    }
+    
     #endregion
 
     #region MEZŐK
-    private static string _elozo;
     #endregion
-
-
-
 }
