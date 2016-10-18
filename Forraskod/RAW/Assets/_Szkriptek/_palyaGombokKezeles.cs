@@ -17,8 +17,8 @@ public class _palyaGombokKezeles : MonoBehaviour {
 
     #region MEZŐK
     List<Button> _gombok = new List<Button>(); // a program elindításakor gyűjtjük ki ebbe a változóba a gombokat rendezetten p1,p2.... az az a számaik szerint.
-    public Button _koviOldal;
-    public Button _elozoOldal;
+    public Button koviPalyaGomb;
+    public Button elozoPalyaGomb;
     int _oldalSzamlalo = 1;
     int _maxOldal = 3;
     int _minOldal = 1;
@@ -39,12 +39,12 @@ public class _palyaGombokKezeles : MonoBehaviour {
             _oldalSzamlalo++;
             if (_oldalSzamlalo > 1 && _volteNagyobb == false)
             {
-                _elozoOldal.gameObject.SetActive(true);
+                elozoPalyaGomb.gameObject.SetActive(true);
                 _volteNagyobb = true;
             }
             if (_oldalSzamlalo == _maxOldal)
             {
-                _koviOldal.gameObject.SetActive(false);
+                koviPalyaGomb.gameObject.SetActive(false);
             }
         }
     }
@@ -61,11 +61,11 @@ public class _palyaGombokKezeles : MonoBehaviour {
             _oldalSzamlalo--;
             if (_oldalSzamlalo > _minOldal && _oldalSzamlalo < _maxOldal)
             {
-                _koviOldal.gameObject.SetActive(true);
+                koviPalyaGomb.gameObject.SetActive(true);
             }
             if (_oldalSzamlalo == _minOldal)
             {
-                _elozoOldal.gameObject.SetActive(false);
+                elozoPalyaGomb.gameObject.SetActive(false);
                 _volteNagyobb = false;
             }
         }
@@ -95,7 +95,7 @@ public class _palyaGombokKezeles : MonoBehaviour {
     {
         if (_gombok[0].GetComponentInChildren<Text>().text.ToString() == "P1")
         {
-            Application.LoadLevel("map1");
+            Application.LoadLevel("palya_1");
         }
     }
     public void Palya2Gomb()
