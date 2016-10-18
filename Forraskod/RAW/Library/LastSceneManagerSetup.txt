@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Jelenetek/_kinezetek.unity
+- path: Assets/_Jelenetek/_foMenu.unity
   isLoaded: 1
   isActive: 1

@@ -3,9 +3,7 @@ using System.Collections;
 
 public class _gombVezerlo : MonoBehaviour
 {
-
     #region METÓDUSOK
-   
     public void Kilepes()
     {
         Application.Quit();
@@ -20,6 +18,11 @@ public class _gombVezerlo : MonoBehaviour
         }
         else if (Application.loadedLevelName == "_palyaValaszto")
         {
+            Application.LoadLevel("_modValaszto");
+        }
+        else if (Application.loadedLevelName.Split('_')[0] == "palya")
+        {
+            //map név szerint loadoljul vissza a betöltő menüt
             Application.LoadLevel("_modValaszto");
         }
     }
@@ -52,10 +55,6 @@ public class _gombVezerlo : MonoBehaviour
     {
         Application.LoadLevel("_palyaValaszto");
     }
-
-
-
-    
 
     #endregion
 
