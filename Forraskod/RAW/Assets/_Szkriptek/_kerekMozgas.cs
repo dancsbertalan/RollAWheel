@@ -3,11 +3,21 @@ using System.Collections;
 
 public class _kerekMozgas : MonoBehaviour
 {
+    
     void Update()
     {
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))                    
-                this.transform.GetComponent<Rigidbody2D>().AddForce(transform.position.x * new Vector2(0.1f, 0));       
-        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))                   
-                this.transform.GetComponent<Rigidbody2D>().AddForce(transform.position.x * new Vector2(-0.1f, 0));      
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            Jobb(GameObject.Find("Kerek"));
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            Bal(GameObject.Find("Kerek"));     
+    }    
+    public void Jobb(GameObject Player)
+    {
+        Player.transform.GetComponent<Rigidbody2D>().AddForce(transform.position.x * new Vector2(0.1f, 0));
     }
+    public void Bal(GameObject Player)
+    {
+        Player.transform.GetComponent<Rigidbody2D>().AddForce(transform.position.x * new Vector2(-0.1f, 0));
+    }
+
 }

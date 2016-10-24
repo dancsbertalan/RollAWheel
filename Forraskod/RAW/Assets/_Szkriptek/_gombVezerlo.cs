@@ -55,6 +55,7 @@ public class _gombVezerlo : MonoBehaviour
     {
         Application.LoadLevel("_palyaValaszto");
     }
+    
 
     #endregion
 
