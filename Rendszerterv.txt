@@ -1,0 +1,88 @@
+---------Rendszerterv---------
+
+Konceptuális:
+	-Mit?
+		- Egy 2 dimenziós cross platform játékot tervezünk,
+		mely kicsiket és nagyokat egyaránt szórakoztat
+		könnyebb, nehezebb kihívásaival.
+	
+	Miért?	
+		- Szórakoztatás céljából csináljuk a programot.
+
+Részletes:
+	-Mit?
+		A Roll A Wheel egy olyan szórakoztató program(=játék) amelyben egy kereket irányíthat a felhasználója dombos pályákon és ezen vehet fel in-game fizetõ eszközöket amelyeket 		különbözõ skinekre válthat be. A nyílt forráskódúságnak köszönhetõen bárki elérheti letöltetheti, a forráskódot módosíthatja és használhatja de csak bizonyos keretek között 		amelyek részletezve vannak a jogi fejezetben. Célunk ezzel a játékkal a szórakoztatás mellet az esetleges unalom ûzés. Ezen szoftver grafikai részéhez a Unity grafikus 		motort választottuk és az ehhez tartozó funkciókat C# nyelven valósítjuk meg.
+
+	-Miért?
+		- A felhasználók szórakoztatása a cél, kellemes
+		attraktív kikapcsolódás, bárhol, bármikor.
+		Alacsony hardware-igény mellett hosszan tartó
+		játékélmény.
+
+	-Hogyan?
+		- Iskolai fejlesztõcsapat munka keretein belül
+		álltunk neki a programnak.
+
+	-Mikor?
+		???
+
+
+----------Fizikai Vetületek----------
+
+	Vásárolt softwarekomponensek:
+		-Használt, vásárolt softwarekomponensek
+			
+			--Unity: a progam motorja, ingyenesen hozzáférhetõ
+			
+			--VisualStudio: a programozási nyelv, környezet, ingyenes tanulói fiók
+			
+			--PhotoShop: a pályák és egyéb pályaelemek szerkesztésére használjuk, ingyenes verzió
+			
+			--GitHub: interneten publikáláshoz már készítés közben és a a teamwork folyamat része
+
+			--MS office: a specifikációk, rendszerkövetelmények és egyéb dokumentációk elkészítése, ingyenes tanulói fiók
+			
+			--Windows operációs rendszer: ingyenes iskolai verzió
+
+
+	Hardware és hálózati topológia:
+		
+		-Három külön számítógép
+		-Három monitor
+		-hozzájuk tartozó perifériák
+		-aktív internet kapcsolat legalább 1mb/s 
+		-adatbázis: az adatok tárolásának
+
+
+---------Logikai Vetületek---------
+
+	Követelmények:
+	
+	- A törvény betartásának érdekében minden kinézetet, grafikai elemet, hang effektet olyan oldalakról szereztünk be melyrõl ingyenesen fel lehet ezeket használni.
+	- Ezen oldalak:
+			Grafikai elemek: http://opengameart.org , http://kenney.nl/ , http://www.gameart2d.com/ , https://clara.io/
+			Hang effektek/háttér zenék: http://soundbible.com/ , https://www.youtube.com/user/NoCopyrightSounds/videos
+	- Minden olyan program mely ezen szoftver elkészítését szolgálta az is ingyenesen felhasználható.
+		- Gimp, Unity - Personal Edition, GitHub, Photoshop próba verzió.
+	- Nyílt forráskódúság -> bárki felhasználhassa a kódot de ha ezt megteszi mindenképpen fel kell tüntetnie a Mi nevünket is illetve az eredeti kód elérhetõségét. (Ezt a repo 		linket).
+
+	A program nyílt forráskódú licenc ami nem egyenlõ a szabad szoftveres licenccel. Ennek következményében az alábbi szabályozások érvényesek.
+
+	Pusztán az a tény, hogy a szoftver kódja megismerhetõ, nem minõsíti a szoftvert szabad forráskódúvá, csak nyílt forráskódúvá. Ebben az esetben a szoftver licenc kódját 		nyilvánosságra hozzuk, és az alábbi jogosultságokat engedéjezzük:
+
+	-felhasználható, (futtatható);
+	-tanulmányozható; mûködését (forráskódját) megvizsgálhatja bárki;
+	-módosítható (DE, fel kell tüntetnie az eredeti forráskódot és azok szerzõit), a módosított változatokat publikálhatja.
+
+	A módostás alapvetõ következményei:
+
+	A „szabad” nem feltétlenül jelent „ingyenest”: bárki bármennyiért árusíthatja a kérdéses 
+	programot, az egyetlen feltétel, hogy az FSF által meghatározott alábbi négy alapjogot garantálja vevõi számra.
+ 		a) A program bármilyen céllal történõ futtatásának, felhasználásának joga.
+ 		b) A szabad tanulmányozhatóság és igény szerinti módosíthatósághoz való jog, valamint jog 
+		arra, hogy a szoftvert a szükségletekhez igazíthassák. Ennek elõfeltétele a forráskódhoz való hozzáférhetõség.
+ 		c) A másolatok szabad terjeszthetõsége.
+ 		d) A szoftver tökéletesítésének, módosításának joga, valamint ezen javított kiadás – az közösség javát szolgáló –
+		közzétételének joga. Ennek szintén elõfeltétele a forráskód elérhetõsége.
+ 		e) Az eredeti kód szerzõ(inek) feltüntetése.
+
