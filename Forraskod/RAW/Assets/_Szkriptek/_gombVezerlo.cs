@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Data;
+using System.IO;
 
 public class _gombVezerlo : MonoBehaviour
 {
@@ -72,12 +73,19 @@ public class _gombVezerlo : MonoBehaviour
 
     void Start()
     {
-        IDataReader olvaso = _adatbazisvezerlo.GetPeldany().FelhasznaloNevLekerdezese(PlayerPrefs.GetInt(_konstansok.FELHASZNALOID));
-        if (elsoNyitasVoltE == false && Application.loadedLevelName == _konstansok.FOMENU)
+        if (Application.loadedLevelName == _konstansok.FOMENU)
         {
-            PlayerPrefs.SetString(_konstansok.NEV, olvaso.GetValue(0).ToString());
-            elsoNyitasVoltE = true;
-            profilText.text = "Profil: " + PlayerPrefs.GetString(_konstansok.NEV);
+            IDataReader olvaso = _adatbazisvezerlo.GetPeldany().FelhasznaloNevLekerdezese(PlayerPrefs.GetInt(_konstansok.FELHASZNALOID));
+            if (elsoNyitasVoltE == false)
+            {
+                PlayerPrefs.SetString(_konstansok.NEV, olvaso.GetValue(0).ToString());
+                elsoNyitasVoltE = true;
+                profilText.text = "Profil: " + PlayerPrefs.GetString(_konstansok.NEV);
+            }
+            else
+            {
+                profilText.text = "Profil: " + PlayerPrefs.GetString(_konstansok.NEV);
+            }
         }
     }
     #endregion

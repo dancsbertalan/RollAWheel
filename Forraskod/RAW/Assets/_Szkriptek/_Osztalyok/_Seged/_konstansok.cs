@@ -36,6 +36,7 @@ public class _konstansok
     public const string KINEZETEK = "_kinezetek";
     public const string MODVALASZTO = "_modValaszto";
     public const string PALYAVALASZTO = "_palyaValaszto";
+    public const string UJFELHASZNALO = "_ujFelhasznalo";
 
     #region PÁLYA JELENET NEVEK
     public const string PALYA_1 = "palya_1";
