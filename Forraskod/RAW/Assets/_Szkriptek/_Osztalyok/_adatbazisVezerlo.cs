@@ -26,9 +26,9 @@ public class _adatbazisvezerlo
         string csatlakozas;
 
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN
-        eleres = Application.dataPath + "/_Adatbazis/rawadatbazis.db";
+        eleres = Application.dataPath + "/_Adatbazis/" + _konstansok.ADATBAZIS_NEV;
 #else
-        eleres = Application.persistentDataPath + "/rawadatbazis.db";
+        eleres = Application.persistentDataPath + "/" + _konstansok.ADATBAZIS_NEV;
 #endif
         Debug.Log(string.Format("Jelenlegi fájl elérés: {0} - Létezik a fájl? - {1}", eleres, File.Exists(eleres).ToString()));
 
@@ -73,6 +73,33 @@ public class _adatbazisvezerlo
         return olvaso;
     }
 
+    /// <summary>
+    /// Amennyiben egy konkrét felhasználónak az adatait szeretnénk lekérdezni DE oly módon ,hogy a Név, Aktív kinézet, Aktív szint oszlopoknál NEM a rá joinolt elemeket írja ki
+    /// ez használandó.
+    /// </summary>
+    /// <param name="FelhasznaloID">Ez a paraméter adja meg ,hogy mely fehasználó érdekel minket.</param>
+    /// <returns></returns>
+    public IDataReader FelhasznaloAdatainakLekerdezese(int FelhasznaloID)
+    {
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = string.Format("select ja.FelhasznaloID,fh.Kor,ja.AktivKinezetID,ja.AktivSzint,ja.Penz from jatekadat ja inner join" +
+            " felhasznalo fh on ja.FelhasznaloID = fh.ID where ja.FelhasznaloID = {0}", FelhasznaloID);
+        olvaso = muvelet.ExecuteReader();
+        return olvaso;
+    }
+
+    /// <summary>
+    /// Amennyiben egy adott ID alapján csak a felhasználó nevét szeretnénk lekérdezni.
+    /// </summary>
+    /// <param name="FelhasznaloID">Annak a felhasználónak a ID-je melynek a nevét szeretnénk megtudni.</param>
+    /// <returns></returns>
+    public IDataReader FelhasznaloNevLekerdezese(int FelhasznaloID)
+    {
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = string.Format("select Nev from felhasznalo where id={0}", FelhasznaloID);
+        olvaso = muvelet.ExecuteReader();
+        return olvaso;
+    }
     #endregion
 }
 
