@@ -88,6 +88,7 @@
     <Compile Include="Assets\_Szkriptek\_Osztalyok\_adatbazisVezerlo.cs" />
     <Compile Include="Assets\_Szkriptek\_ermeSzamolas.cs" />
     <Compile Include="Assets\_Szkriptek\_felhasznalokVezerlo.cs" />
+    <Compile Include="Assets\_Szkriptek\_gombVezerlo.cs" />
     <Compile Include="Assets\_Szkriptek\_hatterMozgato.cs" />
     <Compile Include="Assets\_Szkriptek\_kameraKerek.cs" />
     <Compile Include="Assets\_Szkriptek\_kerekMozgas.cs" />

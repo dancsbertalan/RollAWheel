@@ -10,7 +10,7 @@ public class _kameraKerek : MonoBehaviour
     
     void Start()
     {
-        Player = GameObject.Find("Kerek");
+        Player = GameObject.Find(_konstansok.KEREK);
     }    
         
       

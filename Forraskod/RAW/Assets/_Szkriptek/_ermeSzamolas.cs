@@ -8,15 +8,16 @@ public class _ermeSzamolas : MonoBehaviour
     public Text coinText;
     void Start()
     {
-        coinText.text = PlayerPrefs.GetInt("Coin").ToString();
+        coinText.text = PlayerPrefs.GetInt(_konstansok.PENZ).ToString();
     }
        
     void OnTriggerEnter2D(Collider2D other)
     {
-        coin = PlayerPrefs.GetInt("Coin");
+        coin = PlayerPrefs.GetInt(_konstansok.PENZ);
         Destroy(gameObject);
         coin++;
-        PlayerPrefs.SetInt("Coin",coin);
-        coinText.text = PlayerPrefs.GetInt("Coin").ToString();
+        PlayerPrefs.SetInt(_konstansok.PENZ, coin);
+        coinText.text = PlayerPrefs.GetInt(_konstansok.PENZ).ToString();
+        
     }
 }
