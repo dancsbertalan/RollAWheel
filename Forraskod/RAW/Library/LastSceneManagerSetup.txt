@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Jelenetek/_felhasznalok.unity
+- path: Assets/_Jelenetek/_ujFelhasznalo.unity
   isLoaded: 1
   isActive: 1

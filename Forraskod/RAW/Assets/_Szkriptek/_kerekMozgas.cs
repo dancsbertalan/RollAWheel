@@ -7,9 +7,9 @@ public class _kerekMozgas : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            Jobb(GameObject.Find("Kerek"));
+            Jobb(GameObject.Find(_konstansok.KEREK));
         else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-            Bal(GameObject.Find("Kerek"));     
+            Bal(GameObject.Find(_konstansok.KEREK));     
     }    
     public void Jobb(GameObject Player)
     {
