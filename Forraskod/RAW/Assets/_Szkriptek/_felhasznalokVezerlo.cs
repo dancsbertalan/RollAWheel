@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 using UnityEngine.SceneManagement;
+using Mono.Data.Sqlite;
 
 public class _felhasznalokVezerlo : MonoBehaviour
 {
@@ -21,38 +22,54 @@ public class _felhasznalokVezerlo : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        FeluletInicilizalas();
         adatbazis = _adatbazisvezerlo.GetPeldany();
-        IDataReader olvaso = adatbazis.FelhasznalokLekerdezese();
-        int panelSorszam = 1; //az adatbázisbeli sorszámok szerint dolgozva
-        while (olvaso.Read())
+        IDataReader olvaso;
+        int tempVaneFelhasznalo = adatbazis.VanEFelhasznalo;
+        if (tempVaneFelhasznalo == 1) //tehát ha van felhasználó
         {
-            GameObject felhasznaloPanel = Instantiate(felhasznaloPrefab);
-            Text[] felhasznaloSzovegek = felhasznaloPanel.GetComponentsInChildren<Text>();
-            for (int i = 0; i <= _konstansok.FELHASZNALOK_OSZLOP_SZAM; i++)
+            olvaso = adatbazis.FelhasznalokLekerdezese();
+            FeluletInicilizalas();
+            int panelSorszam = 1; //az adatbázisbeli sorszámok szerint dolgozva
+            while (olvaso.Read())
             {
-                felhasznaloSzovegek[i].text = olvaso.GetValue(i).ToString();
-            }
-            felhasznaloPanel.name = panelSorszam.ToString();
-            felhasznaloPanel.transform.SetParent(felhasznalokTrans);
-            felhasznaloPanel.transform.localScale = new Vector3(1, 1, 1);
+                GameObject felhasznaloPanel = Instantiate(felhasznaloPrefab);
+                Text[] felhasznaloSzovegek = felhasznaloPanel.GetComponentsInChildren<Text>();
+                for (int i = 0; i <= _konstansok.FELHASZNALOK_OSZLOP_SZAM; i++)
+                {
+                    felhasznaloSzovegek[i].text = olvaso.GetValue(i).ToString();
+                }
+                felhasznaloPanel.name = panelSorszam.ToString();
+                felhasznaloPanel.transform.SetParent(felhasznalokTrans);
+                felhasznaloPanel.transform.localScale = new Vector3(1, 1, 1);
 
-            EventTrigger.Entry belepo = new EventTrigger.Entry();
-            belepo.eventID = EventTriggerType.PointerClick;
-            belepo.callback = new EventTrigger.TriggerEvent();
-            UnityEngine.Events.UnityAction<BaseEventData> visszahivas = new UnityEngine.Events.UnityAction<BaseEventData>(FelhasznaloPanelKlikk);
-            belepo.callback.AddListener(visszahivas);
-            EventTrigger esemenyKioldo = felhasznaloPanel.AddComponent<EventTrigger>();
-            esemenyKioldo.triggers.Add(belepo);
-            panelSorszam++;
+                EventTrigger.Entry belepo = new EventTrigger.Entry();
+                belepo.eventID = EventTriggerType.PointerClick;
+                belepo.callback = new EventTrigger.TriggerEvent();
+                UnityEngine.Events.UnityAction<BaseEventData> visszahivas = new UnityEngine.Events.UnityAction<BaseEventData>(FelhasznaloPanelKlikk);
+                belepo.callback.AddListener(visszahivas);
+                EventTrigger esemenyKioldo = felhasznaloPanel.AddComponent<EventTrigger>();
+                esemenyKioldo.triggers.Add(belepo);
+                panelSorszam++;
+            }
+            olvaso.Close();
+        }
+        else if (tempVaneFelhasznalo == 2) //egyébként ha nincs felhasználó
+        {
+            SceneManager.LoadScene(_konstansok.UJFELHASZNALO);
+        }
+        else //ha nem tudtuk megnézni mert zárt az adatbázis
+        {
+
         }
     }
 
     // Update is called once per frame
     void Update()
-    {
-        //ha a méret változik csak akkor kéne - lekezelendő!
-        FeluletInicilizalas();
+    {        //ha a méret változik csak akkor kéne - lekezelendő!
+        if (Application.loadedLevelName == _konstansok.FELHASZNALOK)
+        {
+            FeluletInicilizalas();
+        }
     }
 
 
@@ -97,6 +114,7 @@ public class _felhasznalokVezerlo : MonoBehaviour
                 Debug.Log(int.Parse(olvaso.GetValue(4).ToString()));
                 PlayerPrefs.SetInt(_konstansok.PENZ, int.Parse(olvaso.GetValue(4).ToString()));
             }
+            olvaso.Close();
             //hozzá adjuk a nevet is és a jelenleg aktív kinézetet is a playerprefs-hez
             SceneManager.LoadScene(_konstansok.FOMENU);
         }
@@ -104,6 +122,11 @@ public class _felhasznalokVezerlo : MonoBehaviour
         {
 
         }
+    }
+
+    public void NevErtekValtozas()
+    {
+
     }
     #endregion
 }
