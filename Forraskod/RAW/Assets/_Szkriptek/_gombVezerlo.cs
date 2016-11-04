@@ -75,18 +75,31 @@ public class _gombVezerlo : MonoBehaviour
     {
         if (Application.loadedLevelName == _konstansok.FOMENU)
         {
-            IDataReader olvaso = _adatbazisvezerlo.GetPeldany().FelhasznaloNevLekerdezese(PlayerPrefs.GetInt(_konstansok.FELHASZNALOID));
+            Debug.Log(string.Format("Fő menu player prefs felhasználó id: {0} | Név :{1}", PlayerPrefs.GetInt(_konstansok.FELHASZNALOID), PlayerPrefs.GetString(_konstansok.NEV)));
+            
             if (elsoNyitasVoltE == false)
             {
+                IDataReader olvaso = _adatbazisvezerlo.GetPeldany().FelhasznaloNevLekerdezese(PlayerPrefs.GetInt(_konstansok.FELHASZNALOID));
                 PlayerPrefs.SetString(_konstansok.NEV, olvaso.GetValue(0).ToString());
                 elsoNyitasVoltE = true;
                 profilText.text = "Profil: " + PlayerPrefs.GetString(_konstansok.NEV);
+                olvaso.Close();
             }
             else
             {
                 profilText.text = "Profil: " + PlayerPrefs.GetString(_konstansok.NEV);
             }
         }
+    }
+
+    public void FelhasznalokMegnyitasa()
+    {
+        SceneManager.LoadScene(_konstansok.FELHASZNALOK);
+    }
+
+    public void FelhasznaloKeszitesMegnyitasa()
+    {
+        SceneManager.LoadScene(_konstansok.UJFELHASZNALO);
     }
     #endregion
 }
