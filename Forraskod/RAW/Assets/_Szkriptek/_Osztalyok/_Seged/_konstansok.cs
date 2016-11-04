@@ -14,9 +14,9 @@ public class _konstansok
     public const int FELHASZNALOK_OSZLOP_SZAM = 4;
 
     /// <summary>
-    /// Olyan esetben használjuk , amikor a felhasználókat az adataik nélkül kérjük le , csak ID-ket kapjunk vissza + kor-t de konkrét nevet , aktív kinézet nevet NEM!
+    /// Olyan esetben használjuk , amikor a felhasználókat az adataik nélkül kérjük le , csak ID-ket kapjunk vissza + kor-t + nevet de  aktív kinézet nevet NEM!
     /// </summary>
-    public const int FELHASZNALOK_ADATOKNELKUL_OSZLOP_SZAM = 5;
+    public const int FELHASZNALOK_ADATOKNELKUL_OSZLOP_SZAM = 6;
 
     #region PLAYER PREFSHEZ VAGY ADATBÁZISHOZ
     //Ezen konstansokban tároljuk el az oszlopok neveit KÖTELEZŐEN ezeket kell használni a player prefs BÁRMELY értékének lekérdezésénél is!
@@ -26,6 +26,9 @@ public class _konstansok
     public const string AKTIVKINEZETID = "AktivKinezetID";
     public const string AKTIVSZINT = "AktivSzint";
     public const string PENZ = "Penz";
+    public const int ALAP_PENZ = 0;
+    public const int ALAP_AKTIV_SZINT = 1;
+    public const int ALAP_AKTIV_KIENZET = 1;
     #endregion
     #endregion
 
