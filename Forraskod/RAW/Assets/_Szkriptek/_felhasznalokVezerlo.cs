@@ -78,7 +78,7 @@ public class _felhasznalokVezerlo : MonoBehaviour
                 gombEsemenyKioldo.triggers.Add(gombBelepo);
 
 
-                for (int i = 0; i <= _konstansok.FELHASZNALOK_OSZLOP_SZAM; i++)
+                for (int i = 0; i <= _konstansok.FELHASZNALOK_OSZLOP_SZAM; i++) //FieldCount ????
                 {
                     felhasznaloSzovegek[i].text = olvaso.GetValue(i).ToString();
                 }
