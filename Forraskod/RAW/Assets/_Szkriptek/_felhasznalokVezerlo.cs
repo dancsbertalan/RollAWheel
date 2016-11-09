@@ -7,8 +7,17 @@ using UnityEngine.SceneManagement;
 using Mono.Data.Sqlite;
 using System.Collections.Generic;
 
+
+
 public class _felhasznalokVezerlo : MonoBehaviour
 {
+    #region DELEGATEK
+    /// <summary>
+    /// Ezzel a delegattel tudjuk átadni a végrehajtandó metódust a klikk esemény hozzárendelése metódushoz
+    /// </summary>
+    /// <param name="alapEsemeny"></param>
+    private delegate void KlikkDelegate(UnityEngine.EventSystems.BaseEventData alapEsemeny);
+    #endregion
 
     #region VÁLTOZÓK
     private _adatbazisvezerlo adatbazis;
@@ -59,26 +68,29 @@ public class _felhasznalokVezerlo : MonoBehaviour
         {
             olvaso = adatbazis.FelhasznalokLekerdezese();
             FeluletInicilizalas();
+
             //az adatbázisbeli ID-k szerint dolgozik , mert ez lesz a törlés gombok és a panelek neve - ígyí tudjuk azonosítani ,hogy melyiket nyomtam meg és azt kell törölni az adatbázisbol
             while (olvaso.Read())
             {
-                int panelSorszam = int.Parse(olvaso.GetValue(_konstansok.FELHASZNALOK_OSZLOP_SZAM + 1).ToString());
+                //ha konstansok oszlop számossal oldjuk meg akkor oszlopszam + 1 (5) mert az 5. oszlop lesz az id
+                int panelSorszam = int.Parse(olvaso.GetValue(olvaso.FieldCount - 1).ToString()); //-1 azért kell mert nekünk a 6ot kell lekérni de az 5. az id
                 GameObject felhasznaloPanel = Instantiate(felhasznaloPrefab);
                 Text[] felhasznaloSzovegek = felhasznaloPanel.GetComponentsInChildren<Text>();
 
-                //gomb nyomás
+                #region GOMB KÉSZÍTÉSE
                 Button felhasznaloTorleseGomb = felhasznaloPanel.GetComponentInChildren<Button>();
                 felhasznaloTorleseGomb.name = panelSorszam.ToString();
-                EventTrigger.Entry gombBelepo = new EventTrigger.Entry();
-                gombBelepo.eventID = EventTriggerType.PointerClick;
-                gombBelepo.callback = new EventTrigger.TriggerEvent();
-                UnityEngine.Events.UnityAction<BaseEventData> gombVisszahivas = new UnityEngine.Events.UnityAction<BaseEventData>(FelhasznaloTorlese);
-                gombBelepo.callback.AddListener(gombVisszahivas);
-                EventTrigger gombEsemenyKioldo = felhasznaloTorleseGomb.gameObject.AddComponent<EventTrigger>();
-                gombEsemenyKioldo.triggers.Add(gombBelepo);
+                #endregion
+
+                #region GOMBHOZ ESEMÉNY RENDELÉS
+                ElemKlikkHozzaadas(felhasznaloTorleseGomb.gameObject, FelhasznaloTorlese);
+                #endregion
 
 
-                for (int i = 0; i <= _konstansok.FELHASZNALOK_OSZLOP_SZAM; i++) //FieldCount ????
+                //ha field countal oldjuk meg akkor kell a < mint és kell a -1 hogy 5 nél kisebb lehessen az az a látható (az az a kiírt)
+                //5 oszlopnál több ne legyen , ne legyen túl indexelés
+                //vagy ha a konstansok oszlop számossal oldjuk meg akkor a <= kell ,hogy az indexeknél legyen 4. is és úgy adva 5-öt
+                for (int i = 0; i < olvaso.FieldCount - 1; i++) //
                 {
                     felhasznaloSzovegek[i].text = olvaso.GetValue(i).ToString();
                 }
@@ -86,13 +98,9 @@ public class _felhasznalokVezerlo : MonoBehaviour
                 felhasznaloPanel.transform.SetParent(felhasznalokTrans);
                 felhasznaloPanel.transform.localScale = new Vector3(1, 1, 1);
 
-                EventTrigger.Entry belepo = new EventTrigger.Entry();
-                belepo.eventID = EventTriggerType.PointerClick;
-                belepo.callback = new EventTrigger.TriggerEvent();
-                UnityEngine.Events.UnityAction<BaseEventData> visszahivas = new UnityEngine.Events.UnityAction<BaseEventData>(FelhasznaloPanelKlikk);
-                belepo.callback.AddListener(visszahivas);
-                EventTrigger esemenyKioldo = felhasznaloPanel.AddComponent<EventTrigger>();
-                esemenyKioldo.triggers.Add(belepo);
+                #region FELHASZNALO GOMBHOZ ESEMÉNY RENDELÉS
+                ElemKlikkHozzaadas(felhasznaloPanel, FelhasznaloPanelKlikk);
+                #endregion
             }
             olvaso.Close();
         }
@@ -106,7 +114,7 @@ public class _felhasznalokVezerlo : MonoBehaviour
         }
     }
 
-    public void FelhasznaloPanelKlikk(UnityEngine.EventSystems.BaseEventData alapEsemeny)
+    private void FelhasznaloPanelKlikk(UnityEngine.EventSystems.BaseEventData alapEsemeny)
     {
         if (alapEsemeny is PointerEventData)
         {
@@ -158,6 +166,20 @@ public class _felhasznalokVezerlo : MonoBehaviour
             adatbazis.FelhasznaloTorlese(felhasznaloID);
             SceneManager.LoadScene(_konstansok.FELHASZNALOK);
         }
+    }
+    
+    /// <summary>
+    /// Ezzel a metódussal tudok hozzá rendelni egy gameobject elemhez klikket. (Csak klikk esemény)
+    /// </summary>
+    /// <param name="elem">Az az elem emihez hozzá szeretnénk ezt rendelni.</param>
+    private void ElemKlikkHozzaadas(GameObject elem,KlikkDelegate vegrehajtandoMetodus) {
+        EventTrigger.Entry belepo = new EventTrigger.Entry();
+        belepo.eventID = EventTriggerType.PointerClick;
+        belepo.callback = new EventTrigger.TriggerEvent();
+        UnityEngine.Events.UnityAction<BaseEventData> visszahivas = new UnityEngine.Events.UnityAction<BaseEventData>(vegrehajtandoMetodus);
+        belepo.callback.AddListener(visszahivas);
+        EventTrigger esemenyKioldo = elem.gameObject.AddComponent<EventTrigger>();
+        esemenyKioldo.triggers.Add(belepo);
     }
     #endregion
 }
