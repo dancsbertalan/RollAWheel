@@ -6,6 +6,12 @@ public class _konstansok
     #region ADATBÁZISSAL KAPCSOLATOSAK
     public const string ADATBAZIS_NEV = "rawadatbazis.db";
 
+    public static string AdatbazisEleres {
+        get {
+            return Application.streamingAssetsPath + "/_Adatbazis/" + ADATBAZIS_NEV;
+        }
+    }
+
     /// <summary>
     /// A felhsználók jelenetben használt oszlopok száma.
     /// 0 - Név | 1 - Kor | 2 - Aktív kinézet | 3 - Aktív szint | 4 - Pénz

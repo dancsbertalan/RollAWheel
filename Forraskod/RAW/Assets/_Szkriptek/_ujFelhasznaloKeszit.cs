@@ -34,7 +34,7 @@ public class _ujFelhasznaloKeszit : MonoBehaviour
         if (validKor == true && validNev == true) //ha mind a kettő valid
         {
             Debug.Log("Új felhasználó hozzá adva!");
-            _adatbazisvezerlo adatbazis = _adatbazisvezerlo.GetPeldany();
+            _adatbazisvezerlo adatbazis = _adatbazisvezerlo.GetPeldany(_konstansok.AdatbazisEleres);
             adatbazis.FelhasznaloHozzad(nev, kor);
             SceneManager.LoadScene(_konstansok.FELHASZNALOK);
         }
