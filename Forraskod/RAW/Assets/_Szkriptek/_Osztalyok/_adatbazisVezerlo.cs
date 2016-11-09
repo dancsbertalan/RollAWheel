@@ -1,13 +1,11 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using Mono.Data.Sqlite; //Az sqlite local adatbázis használatához szükséges névtér.
 using System.Collections;
 using System.Collections.Generic;
-using Mono.Data.Sqlite; //Az sqlite local adatbázis használatához szükséges névtér.
-
-
 using System.Data;
-using System.Text;
 using System.IO;
+using System.Text;
+using UnityEngine;
+using UnityEngine.UI;
 
 
 
@@ -22,13 +20,12 @@ public class _adatbazisvezerlo
     #endregion
 
     #region SINGLETON
-    private _adatbazisvezerlo()
+    private _adatbazisvezerlo(string eleres)
     {
-        string eleres = "";
         string csatlakozas;
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN
-        eleres = Application.streamingAssetsPath + "/_Adatbazis/" + _konstansok.ADATBAZIS_NEV; //ez itt jó
-#else
+
+#else //az az android esetén mindenképpen kell a változtatás , hiszen itt más módon érjük el. - ezt nem akarjuk az osztály felhasználójára át terhelni
         eleres = Application.persistentDataPath + "/_Adatbazis/" + _konstansok.ADATBAZIS_NEV;
         if (File.Exists(eleres) == false)
         {
@@ -60,12 +57,12 @@ public class _adatbazisvezerlo
     /// Az adatbázis első elkészítésekor azt MEGNYITJUK! Bezárni azt egy külön metódussal kell. (Ha igényeljük)
     /// </summary>
     /// <returns></returns>
-    public static _adatbazisvezerlo GetPeldany()
+    public static _adatbazisvezerlo GetPeldany(string eleres)
     {
 
         if (_peldany == null)
         {
-            _peldany = new _adatbazisvezerlo();
+            _peldany = new _adatbazisvezerlo(eleres);
         }
 
         return _peldany;
@@ -89,6 +86,22 @@ public class _adatbazisvezerlo
         return olvaso;
     }
 
+
+    /// <summary>
+    /// Amennyiben egy adott ID alapján csak a felhasználó nevét szeretnénk lekérdezni.
+    /// </summary>
+    /// <param name="FelhasznaloID">Annak a felhasználónak a ID-je melynek a nevét szeretnénk megtudni.</param>
+    /// <returns></returns>
+    public IDataReader FelhasznaloNevLekerdezese(int FelhasznaloID)
+    {
+        IDataReader olvaso;
+        IDbCommand muvelet;
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = string.Format("select Nev from felhasznalo where id={0}", FelhasznaloID);
+        olvaso = muvelet.ExecuteReader();
+        return olvaso;
+    }
+
     /// <summary>
     /// Amennyiben egy konkrét felhasználónak az adatait szeretnénk lekérdezni DE oly módon ,hogy a Név, Aktív kinézet, Aktív szint oszlopoknál NEM a rá joinolt elemeket írja ki
     /// ez használandó.
@@ -102,21 +115,6 @@ public class _adatbazisvezerlo
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = string.Format("select ja.FelhasznaloID,fh.Kor,ja.AktivKinezetID,ja.AktivSzint,ja.Penz,fh.Nev from jatekadat ja inner join" +
             " felhasznalo fh on ja.FelhasznaloID = fh.ID where ja.FelhasznaloID = {0}", FelhasznaloID);
-        olvaso = muvelet.ExecuteReader();
-        return olvaso;
-    }
-
-    /// <summary>
-    /// Amennyiben egy adott ID alapján csak a felhasználó nevét szeretnénk lekérdezni.
-    /// </summary>
-    /// <param name="FelhasznaloID">Annak a felhasználónak a ID-je melynek a nevét szeretnénk megtudni.</param>
-    /// <returns></returns>
-    public IDataReader FelhasznaloNevLekerdezese(int FelhasznaloID)
-    {
-        IDataReader olvaso;
-        IDbCommand muvelet;
-        muvelet = adatbCsatlakozas.CreateCommand();
-        muvelet.CommandText = string.Format("select Nev from felhasznalo where id={0}", FelhasznaloID);
         olvaso = muvelet.ExecuteReader();
         return olvaso;
     }

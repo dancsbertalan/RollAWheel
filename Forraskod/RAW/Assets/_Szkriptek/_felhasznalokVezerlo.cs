@@ -33,7 +33,7 @@ public class _felhasznalokVezerlo : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        adatbazis = _adatbazisvezerlo.GetPeldany();
+        adatbazis = _adatbazisvezerlo.GetPeldany(_konstansok.AdatbazisEleres);
         FelhasznaloKi();
 
     }

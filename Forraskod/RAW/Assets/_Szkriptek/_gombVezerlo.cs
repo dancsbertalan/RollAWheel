@@ -79,7 +79,7 @@ public class _gombVezerlo : MonoBehaviour
             
             if (elsoNyitasVoltE == false)
             {
-                IDataReader olvaso = _adatbazisvezerlo.GetPeldany().FelhasznaloNevLekerdezese(PlayerPrefs.GetInt(_konstansok.FELHASZNALOID));
+                IDataReader olvaso = _adatbazisvezerlo.GetPeldany(_konstansok.AdatbazisEleres).FelhasznaloNevLekerdezese(PlayerPrefs.GetInt(_konstansok.FELHASZNALOID));
                 PlayerPrefs.SetString(_konstansok.NEV, olvaso.GetValue(0).ToString());
                 elsoNyitasVoltE = true;
                 profilText.text = "Profil: " + PlayerPrefs.GetString(_konstansok.NEV);
