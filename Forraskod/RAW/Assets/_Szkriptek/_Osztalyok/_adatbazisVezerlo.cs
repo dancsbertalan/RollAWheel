@@ -109,7 +109,7 @@ public class _adatbazisvezerlo
     /// <param name="FelhasznaloID">Ez a paraméter adja meg ,hogy mely fehasználó érdekel minket.</param>
     /// <returns></returns>
     public IDataReader FelhasznaloAdatainakLekerdezese(int FelhasznaloID)
-    {
+    {//játék adatból kérdez le!
         IDataReader olvaso;
         IDbCommand muvelet;
         muvelet = adatbCsatlakozas.CreateCommand();
@@ -121,9 +121,11 @@ public class _adatbazisvezerlo
 
     /// <summary>
     /// Amennyiben a tábla szerkezet még nem létezik , hiszen valamilyen úton módon a fájl sem létezett és azt a programnak kellett létrehoznia - jellemzően első indításnál androidos készülék esetén -
-    /// akkor ezzel a metódussal fogjuk a program által elkészített .db fájlba elkészíteni a táblákat
+    /// akkor ezzel a metódussal fogjuk a program által elkészített .db fájlba elkészíteni a táblákat.
+    /// 
+    /// Csak a teszt miatt lett puplic!!
     /// </summary>
-    private void TablakKeszitese()
+    public void TablakKeszitese()
     {
         IDbCommand muvelet;
         //kinézet tábla elkészítése
@@ -143,38 +145,12 @@ public class _adatbazisvezerlo
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = tabla;
         muvelet.ExecuteNonQuery();
-
-#if UNITY_EDITOR
-        //csak ameddig nem lehet végrehajtani a felhasználó készítést addig itt szúrom be a két teszt felhasználót
-        string sor = "INSERT INTO `Kinezet` VALUES (1,'Alap')";
-        muvelet = adatbCsatlakozas.CreateCommand();
-        muvelet.CommandText = sor;
-        muvelet.ExecuteNonQuery();
-
-        sor = "INSERT INTO `Jatekadat` VALUES (1,1250,1,1)";
-        muvelet = adatbCsatlakozas.CreateCommand();
-        muvelet.CommandText = sor;
-        muvelet.ExecuteNonQuery();
-
-        sor = "INSERT INTO `Jatekadat` VALUES(2, 1300, 10, 1)";
-        muvelet = adatbCsatlakozas.CreateCommand();
-        muvelet.CommandText = sor;
-        muvelet.ExecuteNonQuery();
-
-        sor = "INSERT INTO `Felhasznalo` VALUES (1,21,'iMager')";
-        muvelet = adatbCsatlakozas.CreateCommand();
-        muvelet.CommandText = sor;
-        muvelet.ExecuteNonQuery();
-
-        sor = "INSERT INTO `Felhasznalo` VALUES (2,20,'AndorSebo')";
-        muvelet = adatbCsatlakozas.CreateCommand();
-        muvelet.CommandText = sor;
-        muvelet.ExecuteNonQuery();
-#endif
-        //
     }
 
-    private void JatekAdatNullazasa()
+    /// <summary>
+    /// Csak a teszt miatt public
+    /// </summary>
+    public void JatekAdatNullazasa()
     {
         IDbCommand muvelet;
         muvelet = adatbCsatlakozas.CreateCommand();
@@ -182,7 +158,10 @@ public class _adatbazisvezerlo
         muvelet.ExecuteNonQuery();
     }
 
-    private void FelhasznaloNullazasa()
+    /// <summary>
+    /// Csak a teszt miatt public
+    /// </summary>
+    public void FelhasznaloNullazasa()
     {
         IDbCommand muvelet;
         muvelet = adatbCsatlakozas.CreateCommand();
@@ -270,6 +249,13 @@ public class _adatbazisvezerlo
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = sor;
         muvelet.ExecuteNonQuery();
+    }
+
+    public static void PeldanyNullazasa() {
+        if (_peldany != null)
+        {
+            _peldany = null;
+        }
     }
     #endregion
 
