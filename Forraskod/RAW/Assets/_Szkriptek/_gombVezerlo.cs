@@ -41,19 +41,15 @@ public class _gombVezerlo : MonoBehaviour
             case _konstansok.MODVALASZTO:
                 SceneManager.LoadScene(_konstansok.FOMENU);
                 break;
-                return;
             case _konstansok.PALYAVALASZTO:
                 SceneManager.LoadScene(_konstansok.MODVALASZTO);
                 break;
-                return;
             case _konstansok.BEALLITASOK:
                 SceneManager.LoadScene(_konstansok.FOMENU);
                 break;
-                return;
             case _konstansok.KINEZETEK:
                 SceneManager.LoadScene(_konstansok.FOMENU);
                 break;
-                return;
         }
         if (Application.loadedLevelName.Split('_')[0] == "palya")
         {

@@ -12,16 +12,34 @@ namespace Assets._Unit.Editor
         {
             get
             {
-                return Application.dataPath + "/_Unit/Editor/_Adatbazis/" +"unit_" + _konstansok.ADATBAZIS_NEV;
+                return Application.dataPath + "/_Unit/Editor/_Adatbazis/" + "unit_" + _konstansok.ADATBAZIS_NEV;
             }
         }
 
         /// <summary>
         /// Felhasználók Lekérdezéséhez tartozó konstans adatbázis
         /// </summary>
-        public static string FelhkLekKonstansUnitAdatbazisEleres {
-            get {
+        public static string FelhkLekKonstansUnitAdatbazisEleres
+        {
+            get
+            {
                 return Application.dataPath + "/_Unit/Editor/_Adatbazis/" + "felhkLek_konst_unit_" + _konstansok.ADATBAZIS_NEV;
+            }
+        }
+
+        public static string TablaKeszitoUnitAdatbazisEleres
+        {
+            get
+            {
+                return Application.dataPath + "/_Unit/Editor/_Adatbazis/" + "tablaKeszito_unit_" + _konstansok.ADATBAZIS_NEV;
+            }
+        }
+
+        public static string JatekadatFelhNullazoUnitAdatbazisEleres
+        {
+            get
+            {
+                return Application.dataPath + "/_Unit/Editor/_Adatbazis/" + "jatekAdatFelhNullazo_unit_" + _konstansok.ADATBAZIS_NEV;
             }
         }
 
