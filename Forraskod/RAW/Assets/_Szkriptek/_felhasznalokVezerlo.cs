@@ -2,12 +2,8 @@
 using System.Data;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System;
 using UnityEngine.SceneManagement;
-using Mono.Data.Sqlite;
-using System.Collections.Generic;
-
-
+using System.Threading;
 
 public class _felhasznalokVezerlo : MonoBehaviour
 {
@@ -21,21 +17,25 @@ public class _felhasznalokVezerlo : MonoBehaviour
 
     #region VÁLTOZÓK
     private _adatbazisvezerlo adatbazis;
-
+    private bool elindultE = false;
 
     public GameObject felhasznalokFoPanel;
     public GameObject felhasznalokPanel;
     public GameObject felhasznaloPrefab;
     public Transform felhasznalokTrans;
+
+    public Scrollbar felhasznalokGorgeto;
+    public Transform maszkTrans;
     #endregion
 
     #region METÓDUSOK
+
     // Use this for initialization
     void Start()
     {
         adatbazis = _adatbazisvezerlo.GetPeldany(_konstansok.AdatbazisEleres);
         FelhasznaloKi();
-
+        felhasznalokGorgeto.value = 1;
     }
 
     // Update is called once per frame
@@ -47,7 +47,6 @@ public class _felhasznalokVezerlo : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// Arra használom ezt a metódusot ,hogy a felhasznalokPanel Grid Layout Groupjának a Cell Size X -ét belőjjem 
     /// akkorára amekkora az egész felhasznalokFoPanel szélessége
@@ -56,8 +55,10 @@ public class _felhasznalokVezerlo : MonoBehaviour
     {
         //REGERENCIA!!!
         GridLayoutGroup glg = felhasznalokPanel.GetComponent<GridLayoutGroup>();
-        glg.cellSize = new Vector2(felhasznalokFoPanel.GetComponent<RectTransform>().rect.width,
+        glg.cellSize = new Vector2(felhasznalokFoPanel.GetComponent<RectTransform>().rect.width-felhasznalokGorgeto.GetComponent<RectTransform>().rect.width,
             felhasznalokPanel.GetComponent<GridLayoutGroup>().cellSize.y);
+        felhasznalokGorgeto.GetComponent<RectTransform>().sizeDelta.Set(glg.GetComponent<RectTransform>().rect.height, felhasznalokGorgeto.GetComponent<RectTransform>().rect.width);
+
     }
 
     private void FelhasznaloKi()
@@ -112,6 +113,7 @@ public class _felhasznalokVezerlo : MonoBehaviour
         {
 
         }
+
     }
 
     private void FelhasznaloPanelKlikk(UnityEngine.EventSystems.BaseEventData alapEsemeny)
@@ -167,12 +169,13 @@ public class _felhasznalokVezerlo : MonoBehaviour
             SceneManager.LoadScene(_konstansok.FELHASZNALOK);
         }
     }
-    
+
     /// <summary>
     /// Ezzel a metódussal tudok hozzá rendelni egy gameobject elemhez klikket. (Csak klikk esemény)
     /// </summary>
     /// <param name="elem">Az az elem emihez hozzá szeretnénk ezt rendelni.</param>
-    private void ElemKlikkHozzaadas(GameObject elem,KlikkDelegate vegrehajtandoMetodus) {
+    private void ElemKlikkHozzaadas(GameObject elem, KlikkDelegate vegrehajtandoMetodus)
+    {
         EventTrigger.Entry belepo = new EventTrigger.Entry();
         belepo.eventID = EventTriggerType.PointerClick;
         belepo.callback = new EventTrigger.TriggerEvent();
