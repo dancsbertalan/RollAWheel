@@ -282,7 +282,7 @@ public class _adatbazisVezereloTesztek
             _adatbazisvezerlo adatbazis = _adatbazisvezerlo.GetPeldany(unit_konstansok.TablaKeszitoUnitAdatbazisEleres);
             try
             {
-                adatbazis.TablakKeszitese();
+                adatbazis.TablakKesziteseTesztSegito();
             }
             catch (Exception e)
             {
@@ -373,7 +373,7 @@ public class _adatbazisVezereloTesztek
                 comm.ExecuteNonQuery();
             }
             //hogy legyen mit nullázni előtte hozzá kell adni pár elemet
-            adatbazis.JatekAdatNullazasa();
+            adatbazis.JatekAdatNullazasaTesztSegito();
             //majd valhogy beolvasunk a JA-ból- és ha tudott olvasni , akkor nem nullázta teljesen!
             //akkor nem jó
 
@@ -409,7 +409,7 @@ public class _adatbazisVezereloTesztek
                 comm.CommandText = string.Format("insert into Felhasznalo(ID,Kor,Nev) values ({0},{1},{2})", i + 1, i + 20, nev);
                 comm.ExecuteNonQuery();
             }
-            adatbazis.FelhasznaloNullazasa();
+            adatbazis.FelhasznaloNullazasaTesztSegito();
 
             comm.CommandText = "select * from Felhasznalo";
             IDataReader olvasoFh = comm.ExecuteReader();
@@ -424,5 +424,61 @@ public class _adatbazisVezereloTesztek
         }
 
     }
+
+    [Test]
+    public void LegnagyobbIDGetterTeszt()
+    {
+        _adatbazisvezerlo.PeldanyNullazasa();
+        _adatbazisvezerlo adatbazis = _adatbazisvezerlo.GetPeldany(unit_konstansok.UnitAdatbazisEleres);
+
+        #region ELSŐ MÓDSZER
+        /*
+            Ebben a módszerben úgy teszteljük le, hogy ismert a legnagyobbID (2) és ahhoz hasonlítjuk össze..
+         */
+        int legID = 2;
+        Assert.AreEqual(adatbazis.LegnagyobbIDTesztSegito, legID);
+        #endregion
+
+        #region MÁSODIK MÓDSZER
+
+        /*
+            Ebben a módszerben egy "másik" kód sorozattal rá csatlakozunk és ki keressük a legnagyobb id-t
+         */
+        SqliteConnection conn = new SqliteConnection("URI=file:" + unit_konstansok.UnitAdatbazisEleres);
+        conn.Open();
+        SqliteCommand comm = conn.CreateCommand();
+        comm.CommandText = "select ID from felhasznalo order by ID desc limit 1"; // csak egyet fog tartalmazni!!
+        SqliteDataReader olvasoLegID = comm.ExecuteReader();
+        while (olvasoLegID.Read())
+        {
+            Assert.AreEqual(adatbazis.LegnagyobbIDTesztSegito, int.Parse(olvasoLegID.GetValue(0).ToString()));
+            break;
+        }
+
+        #endregion
+    }
+
+    [Test]
+    public void AdatbazisKapcsolatZarTeszt()
+    {
+        _adatbazisvezerlo.PeldanyNullazasa();
+        _adatbazisvezerlo adatbazis = _adatbazisvezerlo.GetPeldany("URI=file:" + unit_konstansok.UnitAdatbazisEleres);
+        adatbazis.AdatbazisKapcsolatZar();
+
+        Assert.AreEqual(false, adatbazis.AdatbazisNyitottE);
+    }
+
+    [Test]
+    public void AdatbazisKapcsolatNyitasTeszt()
+    {
+        _adatbazisvezerlo.PeldanyNullazasa();
+        _adatbazisvezerlo adatbazis = _adatbazisvezerlo.GetPeldany(unit_konstansok.UnitAdatbazisEleres);
+        adatbazis.AdatbazisKapcsolatNyitas();
+        
+
+        Assert.AreEqual(true, adatbazis.AdatbazisNyitottE);
+    }
+    
+
 }
 

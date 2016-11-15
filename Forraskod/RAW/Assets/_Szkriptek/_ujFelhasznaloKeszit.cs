@@ -28,7 +28,10 @@ public class _ujFelhasznaloKeszit : MonoBehaviour
         }
         if (validKor == false && int.TryParse(korBeText.text,out kor)) //csak akkor akarjon próbálkozni parsolni , ha a kor eddig nem volt valid // az az nem volt már egy próbálkozáss
         {
-            validKor = true;
+            if (kor >= 0)
+            {
+                validKor = true;
+            }
         }
 
         if (validKor == true && validNev == true) //ha mind a kettő valid

@@ -1,11 +1,10 @@
-﻿using Mono.Data.Sqlite; //Az sqlite local adatbázis használatához szükséges névtér.
-using System.Collections;
-using System.Collections.Generic;
+﻿
+using Mono.Data.Sqlite; //Az sqlite local adatbázis használatához szükséges névtér.
+
 using System.Data;
 using System.IO;
-using System.Text;
+
 using UnityEngine;
-using UnityEngine.UI;
 
 
 
@@ -122,10 +121,8 @@ public class _adatbazisvezerlo
     /// <summary>
     /// Amennyiben a tábla szerkezet még nem létezik , hiszen valamilyen úton módon a fájl sem létezett és azt a programnak kellett létrehoznia - jellemzően első indításnál androidos készülék esetén -
     /// akkor ezzel a metódussal fogjuk a program által elkészített .db fájlba elkészíteni a táblákat.
-    /// 
-    /// Csak a teszt miatt lett puplic!!
     /// </summary>
-    public void TablakKeszitese()
+    private void TablakKeszitese()
     {
         IDbCommand muvelet;
         //kinézet tábla elkészítése
@@ -145,12 +142,15 @@ public class _adatbazisvezerlo
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = tabla;
         muvelet.ExecuteNonQuery();
+
+        string beszurando = "INSERT INTO `Kinezet` VALUES(1, 'Alap')";
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = beszurando;
+        muvelet.ExecuteNonQuery();
     }
 
-    /// <summary>
-    /// Csak a teszt miatt public
-    /// </summary>
-    public void JatekAdatNullazasa()
+
+    private void JatekAdatNullazasa()
     {
         IDbCommand muvelet;
         muvelet = adatbCsatlakozas.CreateCommand();
@@ -158,10 +158,7 @@ public class _adatbazisvezerlo
         muvelet.ExecuteNonQuery();
     }
 
-    /// <summary>
-    /// Csak a teszt miatt public
-    /// </summary>
-    public void FelhasznaloNullazasa()
+    private void FelhasznaloNullazasa()
     {
         IDbCommand muvelet;
         muvelet = adatbCsatlakozas.CreateCommand();
@@ -251,7 +248,8 @@ public class _adatbazisvezerlo
         muvelet.ExecuteNonQuery();
     }
 
-    public static void PeldanyNullazasa() {
+    public static void PeldanyNullazasa()
+    {
         if (_peldany != null)
         {
             _peldany = null;
@@ -326,6 +324,35 @@ public class _adatbazisvezerlo
             return adatbazisNyitottE;
         }
     }
+
+
+    #endregion
+
+    #region UNIT TESZTEKHEZ "HELPER" METÓDUSOK
+#if UNITY_EDITOR
+    public void TablakKesziteseTesztSegito()
+    {
+        TablakKeszitese();
+    }
+
+    public void JatekAdatNullazasaTesztSegito()
+    {
+        JatekAdatNullazasa();
+    }
+
+    public void FelhasznaloNullazasaTesztSegito()
+    {
+        FelhasznaloNullazasa();
+    }
+
+    public int LegnagyobbIDTesztSegito
+    {
+        get
+        {
+            return LegnagyobbID;
+        }
+    }
+#endif
     #endregion
 }
 
