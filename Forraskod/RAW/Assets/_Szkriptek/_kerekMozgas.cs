@@ -8,6 +8,9 @@ public class _kerekMozgas : MonoBehaviour
 
     void Start()
     {
+        //illetve itt kell azt le kezelni ,hogy idő módban miket mutasson és miket nem ... stb // - mivel ez az a szkript ami minden pályánál ott lesz! - az , hogy melyik modban vagyunk ki van véve egy prefs-be
+        //PlayerPrefs.GetString(_konstansok.SZIMPLA_MOD) .. értékei pedig az alábbi két konstans lehet _konstansok.SZIMPLA_MOD_ERTEK_IGEN/NEM
+        _konstansok.MozoghatE = true;
         if (!(Application.platform == RuntimePlatform.Android))
         {        
             Jobbra.enabled = false;
@@ -21,22 +24,28 @@ public class _kerekMozgas : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || jobb)
+        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || jobb) && _konstansok.MozoghatE == true)
             Jobb(GameObject.Find(_konstansok.KEREK));
-        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || bal)
+        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || bal) && _konstansok.MozoghatE == true)
             Bal(GameObject.Find(_konstansok.KEREK));
     }
     public void Jobb(GameObject Player)
     {
-        if (Application.platform == RuntimePlatform.Android)
-            jobb = true;
-        Player.transform.GetComponent<Rigidbody2D>().AddForce(transform.position.x * new Vector2(0.1f, 0));
+        if (_konstansok.MozoghatE == true)
+        {
+            if (Application.platform == RuntimePlatform.Android)
+                jobb = true;
+            Player.transform.GetComponent<Rigidbody2D>().AddForce(transform.position.x * new Vector2(0.1f, 0));
+        }
     }
     public void Bal(GameObject Player)
     {
-        if (Application.platform == RuntimePlatform.Android)
-            bal = true;
-        Player.transform.GetComponent<Rigidbody2D>().AddForce(transform.position.x * new Vector2(-0.1f, 0));
+        if (_konstansok.MozoghatE == true)
+        {
+            if (Application.platform == RuntimePlatform.Android)
+                bal = true;
+            Player.transform.GetComponent<Rigidbody2D>().AddForce(transform.position.x * new Vector2(-0.1f, 0));
+        }
     }
     public void felenged()
     {
