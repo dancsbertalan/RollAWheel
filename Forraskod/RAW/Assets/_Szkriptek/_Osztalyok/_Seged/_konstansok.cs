@@ -6,8 +6,10 @@ public class _konstansok
     #region ADATBÁZISSAL KAPCSOLATOSAK
     public const string ADATBAZIS_NEV = "rawadatbazis.db";
 
-    public static string AdatbazisEleres {
-        get {
+    public static string AdatbazisEleres
+    {
+        get
+        {
             return Application.streamingAssetsPath + "/_Adatbazis/" + ADATBAZIS_NEV;
         }
     }
@@ -32,9 +34,13 @@ public class _konstansok
     public const string AKTIVKINEZETID = "AktivKinezetID";
     public const string AKTIVSZINT = "AktivSzint";
     public const string PENZ = "Penz";
+    public const string TEMP_PENZ = "TempPenz";
     public const int ALAP_PENZ = 0;
     public const int ALAP_AKTIV_SZINT = 1;
     public const int ALAP_AKTIV_KIENZET = 1;
+    public const string SZIMPLA_MOD = "SzimplaMod";
+    public const string SZIMPLA_MOD_ERTEK_IGEN = "Igen";
+    public const string SZIMPLA_MOD_ERTEK_NEM = "Nem";
     #endregion
     #endregion
 
@@ -81,6 +87,26 @@ public class _konstansok
 
     #region PREFAB NEVEK
     public const string KEREK = "Kerek";
+    #endregion
+
+    #region SEGED
+    static bool mozoghatE = true;
+
+    /// <summary>
+    /// Ez arra kell ,hogy amikor megjelenítjük a felugró panelt (ahol az eredményeket kapjuk meg) - ne tudjon mozogni az illető - logikus nem ? :D
+    /// </summary>
+    public static bool MozoghatE
+    {
+        get
+        {
+            return mozoghatE;
+        }
+
+        set
+        {
+            mozoghatE = value;
+        }
+    }
     #endregion
 
 }

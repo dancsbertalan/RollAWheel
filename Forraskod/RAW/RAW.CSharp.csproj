@@ -94,6 +94,7 @@
     <Compile Include="Assets\_Szkriptek\_kerekMozgas.cs" />
     <Compile Include="Assets\_Szkriptek\_palyaGombokKezeles.cs" />
     <Compile Include="Assets\_Szkriptek\_ujFelhasznaloKeszit.cs" />
+    <Compile Include="Assets\_Szkriptek\_zaszlo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

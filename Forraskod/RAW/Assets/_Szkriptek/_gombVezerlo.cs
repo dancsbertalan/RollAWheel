@@ -59,11 +59,13 @@ public class _gombVezerlo : MonoBehaviour
 
     public void SzimplaMod()
     {
+        PlayerPrefs.SetString(_konstansok.SZIMPLA_MOD, _konstansok.SZIMPLA_MOD_ERTEK_IGEN);
         SceneManager.LoadScene(_konstansok.PALYAVALASZTO);
     }
 
     public void VersenyAzIdovel()
     {
+        PlayerPrefs.SetString(_konstansok.SZIMPLA_MOD, _konstansok.SZIMPLA_MOD_ERTEK_NEM);
         SceneManager.LoadScene(_konstansok.PALYAVALASZTO);
     }
 
@@ -72,7 +74,7 @@ public class _gombVezerlo : MonoBehaviour
         if (Application.loadedLevelName == _konstansok.FOMENU)
         {
             Debug.Log(string.Format("Fő menu player prefs felhasználó id: {0} | Név :{1}", PlayerPrefs.GetInt(_konstansok.FELHASZNALOID), PlayerPrefs.GetString(_konstansok.NEV)));
-            
+
             if (elsoNyitasVoltE == false)
             {
                 IDataReader olvaso = _adatbazisvezerlo.GetPeldany(_konstansok.AdatbazisEleres).FelhasznaloNevLekerdezese(PlayerPrefs.GetInt(_konstansok.FELHASZNALOID));
@@ -96,6 +98,16 @@ public class _gombVezerlo : MonoBehaviour
     public void FelhasznaloKeszitesMegnyitasa()
     {
         SceneManager.LoadScene(_konstansok.UJFELHASZNALO);
+    }
+
+    public void Ujra()
+    {
+        SceneManager.LoadScene(Application.loadedLevelName);
+    }
+
+    public void UjValasztasa()
+    {
+        SceneManager.LoadScene(_konstansok.PALYAVALASZTO);
     }
     #endregion
 }

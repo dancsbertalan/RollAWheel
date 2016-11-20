@@ -68,7 +68,7 @@ public class _adatbazisvezerlo
     }
     #endregion
 
-    #region METÓDUSOK
+    #region ADATBÁZIS METÓDUSOK
 
     /// <summary>
     /// Ezzel a metódussal tudjuk az összes felhasználót lekérni MINDEN adatával!
@@ -148,8 +148,7 @@ public class _adatbazisvezerlo
         muvelet.CommandText = beszurando;
         muvelet.ExecuteNonQuery();
     }
-
-
+    
     private void JatekAdatNullazasa()
     {
         IDbCommand muvelet;
@@ -255,9 +254,17 @@ public class _adatbazisvezerlo
             _peldany = null;
         }
     }
+
+    public void FelhasznaloPenzAtir(int FelhasznaloID,int PenzErtek) {
+        IDbCommand muvelet;
+        string sor = string.Format("update Jatekadat set Penz={0} where FelhasznaloID={1}", PenzErtek, FelhasznaloID);
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = sor;
+        muvelet.ExecuteNonQuery();
+    }
     #endregion
 
-    #region PROPERTYK
+    #region ADATBÁZIS PROPERTYK
 
     /// <summary>
     /// Azt adja vissza, hogy van-e felhasználó az adatbázisban
