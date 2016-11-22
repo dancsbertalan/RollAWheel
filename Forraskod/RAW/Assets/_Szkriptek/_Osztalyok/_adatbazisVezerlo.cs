@@ -245,6 +245,11 @@ public class _adatbazisvezerlo
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = sor;
         muvelet.ExecuteNonQuery();
+
+        sor = string.Format("delete from FelhasznaloPalyaAdat where FelhID={0}", FelhasznaloID);
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = sor;
+        muvelet.ExecuteNonQuery();
     }
 
     public static void PeldanyNullazasa()
@@ -260,6 +265,48 @@ public class _adatbazisvezerlo
         string sor = string.Format("update Jatekadat set Penz={0} where FelhasznaloID={1}", PenzErtek, FelhasznaloID);
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = sor;
+        muvelet.ExecuteNonQuery();
+    }
+
+    /// <summary>
+    /// A felhsználónak a legjobb idejét tudjuk lekérni az adott pályán.
+    /// </summary>
+    /// <param name="FelhasznaloID">A felhasználó ID-je akinek az idejét akarjuk tudni.</param>
+    /// <param name="PalyaID">A pálya amelyen a legjobb idejét akarjuk tudni</param>
+    /// <returns></returns>
+    public int FelhasznaloLegjobbIdoAdottPalyan(int FelhasznaloID,int PalyaID) {
+        int ido = 0;
+        IDataReader olvaso;
+        IDbCommand muvelet;
+        muvelet = adatbCsatlakozas.CreateCommand();
+        //nem ártana megnézni ,hogy egyátalán van-e ilyen poálya ID / felh - valid-e
+        muvelet.CommandText = string.Format("select fpa.LegjobbIdo as 'Legjobb idő' from FelhasznaloPalyaAdat fpa "
+            + "inner join Felhasznalo fh on fh.ID=fpa.FelhID "
+            + "inner join Palya pa on pa.ID=fpa.PalyaID where fh.ID = {0} AND pa.ID = {1}",FelhasznaloID,PalyaID);
+        olvaso = muvelet.ExecuteReader();
+        while (olvaso.Read())
+        {
+            ido = int.Parse(olvaso.GetValue(0).ToString());
+        }
+        olvaso.Close();
+        if (ido == 0)
+        {
+            ido = -1;
+        }
+        return ido;
+    }
+
+    public void FelhasznaloLegjobbIdoAdottPalyaFrissit(int FelhasznaloID, int PalyaID,int ujIdo) {
+        IDbCommand muvelet;
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = string.Format("update FelhasznaloPalyaAdat set LegjobbIdo = {0} where FelhID={1} and PalyaID = {2}", ujIdo, FelhasznaloID, PalyaID);
+        muvelet.ExecuteNonQuery();
+    }
+
+    public void FelhasznaloLegjobbIdoAdottPalyaBeszur(int FelhasznaloID,int PalyaID,int ujIdo) {
+        IDbCommand muvelet;
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = string.Format("INSERT INTO `FelhasznaloPalyaAdat` (FelhID,PalyaID,LegjobbIdo) values ({0},{1},{2})", FelhasznaloID, PalyaID, ujIdo);
         muvelet.ExecuteNonQuery();
     }
     #endregion

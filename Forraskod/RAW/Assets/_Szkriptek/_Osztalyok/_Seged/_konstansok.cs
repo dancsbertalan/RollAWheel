@@ -83,14 +83,23 @@ public class _konstansok
     public const string PALYA_14 = "palya_14";
     public const string P14 = "P14";
     #endregion
+
+    #region TAG NEVEK
+    public const string KEZD_ZASZLO = "kezdZaszlo";
+    public const string VEG_ZASZLO = "vegZaszlo";
+    #endregion
     #endregion
 
     #region PREFAB NEVEK
     public const string KEREK = "Kerek";
     #endregion
 
+    #region UI STRINGEK
+    #endregion
+
     #region SEGED
     static bool mozoghatE = true;
+    public const int TIMER_EGY_MASODPERC = 1000;
 
     /// <summary>
     /// Ez arra kell ,hogy amikor megjelenítjük a felugró panelt (ahol az eredményeket kapjuk meg) - ne tudjon mozogni az illető - logikus nem ? :D
