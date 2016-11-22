@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Jelenetek/_Palyak/palya_1.unity
+- path: Assets/_Jelenetek/_palyaValaszto.unity
   isLoaded: 1
   isActive: 1
