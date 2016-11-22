@@ -143,12 +143,27 @@ public class _adatbazisvezerlo
         muvelet.CommandText = tabla;
         muvelet.ExecuteNonQuery();
 
+        tabla = "CREATE TABLE `Palya` ( `ID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `Nev` TEXT NOT NULL )";
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = tabla;
+        muvelet.ExecuteNonQuery();
+
+        tabla = "CREATE TABLE `FelhasznaloPalyaAdat` ( `ID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `FelhID` INTEGER NOT NULL, `PalyaID` INTEGER NOT NULL, `LegjobbIdo` INTEGER, FOREIGN KEY(`FelhID`) REFERENCES `Felhasznalo`(`ID`), FOREIGN KEY(`PalyaID`) REFERENCES `Palya`(`ID`) )";
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = tabla;
+        muvelet.ExecuteNonQuery();
+
         string beszurando = "INSERT INTO `Kinezet` VALUES(1, 'Alap')";
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = beszurando;
         muvelet.ExecuteNonQuery();
+
+        beszurando = "insert into `Palya` (Nev) values ('Kezdet')";
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = beszurando;
+        muvelet.ExecuteNonQuery();
     }
-    
+
     private void JatekAdatNullazasa()
     {
         IDbCommand muvelet;
@@ -260,7 +275,8 @@ public class _adatbazisvezerlo
         }
     }
 
-    public void FelhasznaloPenzAtir(int FelhasznaloID,int PenzErtek) {
+    public void FelhasznaloPenzAtir(int FelhasznaloID, int PenzErtek)
+    {
         IDbCommand muvelet;
         string sor = string.Format("update Jatekadat set Penz={0} where FelhasznaloID={1}", PenzErtek, FelhasznaloID);
         muvelet = adatbCsatlakozas.CreateCommand();
@@ -274,7 +290,8 @@ public class _adatbazisvezerlo
     /// <param name="FelhasznaloID">A felhasználó ID-je akinek az idejét akarjuk tudni.</param>
     /// <param name="PalyaID">A pálya amelyen a legjobb idejét akarjuk tudni</param>
     /// <returns></returns>
-    public int FelhasznaloLegjobbIdoAdottPalyan(int FelhasznaloID,int PalyaID) {
+    public int FelhasznaloLegjobbIdoAdottPalyan(int FelhasznaloID, int PalyaID)
+    {
         int ido = 0;
         IDataReader olvaso;
         IDbCommand muvelet;
@@ -282,7 +299,7 @@ public class _adatbazisvezerlo
         //nem ártana megnézni ,hogy egyátalán van-e ilyen poálya ID / felh - valid-e
         muvelet.CommandText = string.Format("select fpa.LegjobbIdo as 'Legjobb idő' from FelhasznaloPalyaAdat fpa "
             + "inner join Felhasznalo fh on fh.ID=fpa.FelhID "
-            + "inner join Palya pa on pa.ID=fpa.PalyaID where fh.ID = {0} AND pa.ID = {1}",FelhasznaloID,PalyaID);
+            + "inner join Palya pa on pa.ID=fpa.PalyaID where fh.ID = {0} AND pa.ID = {1}", FelhasznaloID, PalyaID);
         olvaso = muvelet.ExecuteReader();
         while (olvaso.Read())
         {
@@ -296,14 +313,16 @@ public class _adatbazisvezerlo
         return ido;
     }
 
-    public void FelhasznaloLegjobbIdoAdottPalyaFrissit(int FelhasznaloID, int PalyaID,int ujIdo) {
+    public void FelhasznaloLegjobbIdoAdottPalyaFrissit(int FelhasznaloID, int PalyaID, int ujIdo)
+    {
         IDbCommand muvelet;
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = string.Format("update FelhasznaloPalyaAdat set LegjobbIdo = {0} where FelhID={1} and PalyaID = {2}", ujIdo, FelhasznaloID, PalyaID);
         muvelet.ExecuteNonQuery();
     }
 
-    public void FelhasznaloLegjobbIdoAdottPalyaBeszur(int FelhasznaloID,int PalyaID,int ujIdo) {
+    public void FelhasznaloLegjobbIdoAdottPalyaBeszur(int FelhasznaloID, int PalyaID, int ujIdo)
+    {
         IDbCommand muvelet;
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = string.Format("INSERT INTO `FelhasznaloPalyaAdat` (FelhID,PalyaID,LegjobbIdo) values ({0},{1},{2})", FelhasznaloID, PalyaID, ujIdo);
