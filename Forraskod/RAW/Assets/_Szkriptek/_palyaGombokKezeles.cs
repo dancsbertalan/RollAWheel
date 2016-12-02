@@ -79,7 +79,7 @@ public class _palyaGombokKezeles : MonoBehaviour
         Object[] _gK = Object.FindSceneObjectsOfType(typeof(Button));
         for (int i = 0; i < _gK.Length; i++)
         {
-            if (_gK[i] is Button && _gombok.Contains(_gK[i] as Button) == false && (_gK[i] as Button).tag == _konstansok.PALYA_GOMB)
+            if (_gK[i] is Button && _gombok.Contains(_gK[i] as Button) == false && (_gK[i] as Button).tag == "palyaGomb")
             {
                 _gombok.Add(_gK[i] as Button);
             }

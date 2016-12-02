@@ -1,16 +1,12 @@
 BEGIN TRANSACTION;
 CREATE TABLE `Palya` ( `ID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `Nev` TEXT NOT NULL );
-INSERT INTO `Palya` VALUES (7,'Kezdet');
-CREATE TABLE "Kinezet" (
+INSERT INTO `Palya` VALUES (1,'Kezdet');
+CREATE TABLE `Kinezet` (
 	`ID`	INTEGER NOT NULL,
 	`Nev`	TEXT NOT NULL,
-	`Fajlnev`	TEXT,
 	PRIMARY KEY(`ID`)
 );
-
-INSERT INTO `Kinezet` VALUES (1,'Alap','_kerek');
-INSERT INTO `Kinezet` VALUES (2,'Rózsaszin','_2kerek');
-
+INSERT INTO `Kinezet` VALUES (1,'Alap');
 CREATE TABLE `Jatekadat` (
 	`FelhasznaloID`	INTEGER,
 	`Penz`	INTEGER,

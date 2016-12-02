@@ -1,5 +1,4 @@
-﻿using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class _kerekMozgas : MonoBehaviour
@@ -9,13 +8,11 @@ public class _kerekMozgas : MonoBehaviour
 
     void Start()
     {
-
         //illetve itt kell azt le kezelni ,hogy idő módban miket mutasson és miket nem ... stb // - mivel ez az a szkript ami minden pályánál ott lesz! - az , hogy melyik modban vagyunk ki van véve egy prefs-be
         //PlayerPrefs.GetString(_konstansok.SZIMPLA_MOD) .. értékei pedig az alábbi két konstans lehet _konstansok.SZIMPLA_MOD_ERTEK_IGEN/NEM
-        KinezetAllit();
         _konstansok.MozoghatE = true;
         if (!(Application.platform == RuntimePlatform.Android))
-        {
+        {        
             Jobbra.enabled = false;
             Jobbra.GetComponentInChildren<CanvasRenderer>().SetAlpha(0);
             Jobbra.GetComponentInChildren<Text>().color = Color.clear;
@@ -23,16 +20,6 @@ public class _kerekMozgas : MonoBehaviour
             Balra.GetComponentInChildren<CanvasRenderer>().SetAlpha(0);
             Balra.GetComponentInChildren<Text>().color = Color.clear;
         }
-    }
-
-    /// <summary>
-    /// Ez a metódus fogja beállítani a felhasználónak a kinézetét. Csak akkor történik változás ,hogy ha 
-    /// </summary>
-    private void KinezetAllit()
-    {
-        string adottFajLnev = _adatbazisvezerlo.GetPeldany(_konstansok.AdatbazisEleres).AdottKinezetFajLnev(PlayerPrefs.GetInt(_konstansok.AKTIVKINEZETID));
-        Sprite ujKerek = Resources.Load("_Kerek/"+adottFajLnev, typeof(Sprite)) as Sprite;
-        GameObject.Find(_konstansok.KEREK).GetComponent<SpriteRenderer>().sprite = ujKerek;
     }
 
     void Update()

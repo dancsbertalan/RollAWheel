@@ -87,8 +87,6 @@ public class _konstansok
     #region TAG NEVEK
     public const string KEZD_ZASZLO = "kezdZaszlo";
     public const string VEG_ZASZLO = "vegZaszlo";
-    public const string PALYA_GOMB = "palyaGomb";
-    public const string KINEZET_GOMB = "kinezetGomb";
     #endregion
     #endregion
 
@@ -96,15 +94,10 @@ public class _konstansok
     public const string KEREK = "Kerek";
     #endregion
 
+    #region UI STRINGEK
+    #endregion
 
     #region SEGED
-    public const string PNG = ".png";
-
-    public static string KerekKepekMappaEleres {
-        get {
-            return Application.dataPath + "/_Kepek/_Kerek/";
-        }
-    }
     static bool mozoghatE = true;
     public const int TIMER_EGY_MASODPERC = 1000;
 
