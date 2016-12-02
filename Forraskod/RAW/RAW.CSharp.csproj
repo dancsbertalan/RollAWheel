@@ -92,6 +92,7 @@
     <Compile Include="Assets\_Szkriptek\_hatterMozgato.cs" />
     <Compile Include="Assets\_Szkriptek\_kameraKerek.cs" />
     <Compile Include="Assets\_Szkriptek\_kerekMozgas.cs" />
+    <Compile Include="Assets\_Szkriptek\_kinezetGombokKezeles.cs" />
     <Compile Include="Assets\_Szkriptek\_palyaGombokKezeles.cs" />
     <Compile Include="Assets\_Szkriptek\_ujFelhasznaloKeszit.cs" />
     <Compile Include="Assets\_Szkriptek\_zaszlo.cs" />
