@@ -69,6 +69,19 @@ public class _adatbazisvezerlo
     #endregion
 
     #region ADATBÁZIS METÓDUSOK
+    /// <summary>
+    /// Ezzel a metódussal lehet megadni azt, hogy mely felhasználónak melyre változott az aktív kinézete.
+    /// </summary>
+    /// <param name="aktivKinezetID">Ez az a paraméter amelyre változott - amely adatai lesznek innentől kezdve érvényesek erre a felhasználóra</param>
+    /// <param name="felhsznaloID">És ez a felhasználónak az azonosítója. </param>
+    public void KinezetModosult(int aktivKinezetID,int felhsznaloID)
+    {
+        IDbCommand muvelet;
+        string sor = string.Format("update jatekadat set AktivKinezetID = {0} where FelhasznaloID = {1}", aktivKinezetID, felhsznaloID);
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = sor;
+        muvelet.ExecuteNonQuery();  
+    }
 
     /// <summary>
     /// Ezzel a metódussal tudjuk az összes felhasználót lekérni MINDEN adatával!
@@ -126,7 +139,7 @@ public class _adatbazisvezerlo
     {
         IDbCommand muvelet;
         //kinézet tábla elkészítése
-        string tabla = "CREATE TABLE `Kinezet` (`ID`	INTEGER NOT NULL,`Nev`	TEXT NOT NULL,PRIMARY KEY(`ID`))";
+        string tabla = "CREATE TABLE `Kinezet` (`ID`	INTEGER NOT NULL,`Nev`	TEXT NOT NULL,`Fajlnev`	TEXT, PRIMARY KEY(`ID`))";
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = tabla;
         muvelet.ExecuteNonQuery();
@@ -153,7 +166,22 @@ public class _adatbazisvezerlo
         muvelet.CommandText = tabla;
         muvelet.ExecuteNonQuery();
 
-        string beszurando = "INSERT INTO `Kinezet` VALUES(1, 'Alap')";
+        string beszurando = "INSERT INTO `Kinezet` VALUES(1, 'Alap','_1Kerek')";
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = beszurando;
+        muvelet.ExecuteNonQuery();
+
+        beszurando = "INSERT INTO `Kinezet` VALUES(2, 'Rózsaszín','_2Kerek')";
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = beszurando;
+        muvelet.ExecuteNonQuery();
+
+        beszurando = "INSERT INTO `Kinezet` VALUES(3, 'Üreges','_3Kerek')";
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = beszurando;
+        muvelet.ExecuteNonQuery();
+
+        beszurando = "INSERT INTO `Kinezet` VALUES(4, 'Telített','_4Kerek')";
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = beszurando;
         muvelet.ExecuteNonQuery();
@@ -178,6 +206,28 @@ public class _adatbazisvezerlo
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = "delete from felhasznalo";
         muvelet.ExecuteNonQuery();
+    }
+
+    /// <summary>
+    /// Vissza adja egy adott kinézetnek a fájl nevét.
+    /// </summary>
+    /// <param name="adottKinzetID">Ez az a paraméter ami szerint le szeretnénk kérni az adott kinézet fájlnak a nevét.</param>
+    /// <returns></returns>
+    public string AdottKinezetFajLnev(int adottKinzetID) {
+        string adottFajlNev = "";
+        IDataReader olvaso;
+        IDbCommand muvelet;
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = string.Format("select Fajlnev from Kinezet where ID = {0}", adottKinzetID);
+        olvaso = muvelet.ExecuteReader();
+
+        while (olvaso.Read())
+        {
+            adottFajlNev = olvaso.GetString(0);
+        }
+
+        olvaso.Close();
+        return adottFajlNev;
     }
 
     private int LegnagyobbID
