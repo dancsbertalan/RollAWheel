@@ -83,6 +83,8 @@ public class _konstansok
     public const string PALYA_14 = "palya_14";
     public const string P14 = "P14";
     #endregion
+    
+
 
     #region TAG NEVEK
     public const string KEZD_ZASZLO = "kezdZaszlo";
