@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
 public class _palyaGombokKezeles : MonoBehaviour
 {
@@ -105,6 +104,7 @@ public class _palyaGombokKezeles : MonoBehaviour
     {
         if (_gombok[1].GetComponentInChildren<Text>().text.ToString() == _konstansok.P2)
         {
+            Application.LoadLevel(_konstansok.PALYA_2);
         }
     }
     public void Palya3Gomb()
