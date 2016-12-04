@@ -50,6 +50,7 @@ public class _gombVezerlo : MonoBehaviour
             case _konstansok.KINEZETEK:
                 SceneManager.LoadScene(_konstansok.FOMENU);
                 break;
+            
         }
         if (Application.loadedLevelName.Split('_')[0] == "palya")
         {
