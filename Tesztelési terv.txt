@@ -1,0 +1,146 @@
+1. Dokumentum megállapítása|||
+||||||||||||||||||||||||||||||
+
+Ez a dokumentum szándékozik meghatározni a Roll A Wheel projekt tesztelési elvárásait.
+
+Amennyiben az alábbi feltételeknek megfelel a rendszer:
+	- specifikációban leírt és elfogadtott funkciók az elvárt szerint mûködnek
+	- a programban használt adatbázis lekérdezések idejei nem haladnak meg egy maximum határ értéket
+	- minden egyes metódusnak az egység tesztje kötelezõ jelleggel "zöld" kell, hogy legyen - átmegy a teszten
+	
+akkor kijelenthetjük, hogy a program ezen verziójának a fejlesztését sikeresen befejeztük.
+
+2. Felhasznált dokumentumok|||
+||||||||||||||||||||||||||||||
+
+A tesztelés sikerességéhez az alábbi dokumentumokat kellet felhasználnunk:
+	- Rendszerterv
+		- Ez határozta meg azt hogy mik találhatóak majd meg a mi rendszerünkben és annak hogyan és mikkel kell felépülnie.
+	- Követelmény specifikáció
+		- Ebben vannak leírva azon feltételek melyeknek MINDENKÉPPEN benne kell lennie a programban a sikeres elkészüléshez.
+	- Képernyõ tervek
+		- Egyaránt kattintható és szöveges (képekkel) képernyõ tervek is találhatóak
+		- Ez határozta azt meg, hogy mire kattintva mi jöjjön be - mi történjen a felhasználói felületen.
+	- Forráskódban fellelhetõ egység tesztek
+	
+3. Leszállítandó dokumentumok|||
+||||||||||||||||||||||||||||||||
+
+Ebben a fejezetben azt határozzuk meg, hogy mely dokumentumokat kell átadni a sikeres teszteléshez.
+	- Az elkészült program (modul) futtatható állományát
+		- Android esetén - .APK
+		- Windows esetén - .EXE
+	- Nyiltforráskódúság esetén az egész programhoz felhasznált assetek, képek, videók, hangok .. stb anyagok mellett a forráskód
+
+4. Tesztelés hatóköre|||
+||||||||||||||||||||||||
+
+	- Érintett rendszerek:
+		A tesztelési folyamat mindig az aktuálisan tesztelendõ modulra terjed ki. Csak ezen moduloknak a helyes mûködésével kell foglalkozni.
+		Ami még nincs megírva azzal nem ami viszont már meg van írva az már áthaladt a tesztelésen ezért azzal már nem kell törõdni.
+		
+	- Tesztelendõ funkciók:
+		Az adott modulnál minden olyan funkciót le kell tesztelni amit a felhasználó látni fog és használhat is. Olyan funkciók melyek csak az adminoknak
+		vagy a nagyobb "rangúaknak" szólnak nem szükséges de elõnyös kipróbálni - letesztelni.
+	
+	- Nem tesztelendõ funkciók:
+		Azok a funkciók melyek esetlegesen már egy másik modulban (programban) megvoltak írva itt már nem szükséges újra kipróbálni - tesztelni, ugyan is
+		a másik modulból történõ "másolás" esetén ebbe már kevés eséllyel lehet hiba - pláne, hogy ha a program modul fejlesztése során TDD szerint jártunk el.
+		
+5. Tesztelési stratégia|||
+||||||||||||||||||||||||||
+	
+Ebben a fejezetben van meghatározva, hogy milyen stratégiát kell követni a tesztelés során.
+
+Az elsõ és egyben a legfontosabb a megfelelõen mûködõ program (modul) elkészüléséhez hogy a programozók a fejlesztés során az ún. TDD(Tesztvezérelt fejlesztés) szerint járjanak el.
+Amennyiben ez megvan a második "szempont" a megfelelõ integrálása egy adott blokknak - az az csakis kizárólag akkor amikor a fennt említett TDD szerinti "zöld" jelzésd kaptunk.
+Harmadik szempont az már maga a rendszer egészének tesztelése, ez több alpontra osztható:
+	- egy alfa teszt indítása
+	- egy béta teszt indítása (zárt / nyílt)
+	- használt "szerverek", adatbázisok terhelésének tesztelése
+	- egy olyan embert aki nem ismeri a projektet megkérni hogy használja X-Y ideig a szoftvert
+Negyedik szempont az úgynevezett felhasználói átvételi teszt melyben átadjuk usernek és Õ itt elmondhatja ,hogy mit hogy gondolt.
+(V)
+
+6. Elfogadási kritériumok|||
+||||||||||||||||||||||||||||
+
+Ebben a fejezetben határozódnak meg azok a szempontok melyeknek mindenképpen teljesülnie kell egy adott fázisra. Ezek mellet a tesztelés felfüggesztésének / újraindításának kritériumai is.
+
+	- Amelyeknek teljesülnie kell:
+		Az egységtesztek "zöld" jelzéssel engedjenek minket át.
+		Egy adott funkció úgy mûködjön ahogy az meg lett határozva a projekt kezdetén
+		Feleljen meg (legalább) 90%osan a tesztelési stratégiának - de a felhasználói átvételi teszt semmiképpen se maradjon ki!
+		
+	- Tesztelés felfüggesztésének kritériumai
+		Egy tesztelési folyamat csak abban az esetben függeszthetõ fel ha:
+			A tesztelõ csapatot valami váratlan "baleset" érte (testileg)
+			Huzamosabb ideig nincs áram
+	
+	- Tesztelés újraindításának kritériumai
+		Egy tesztelési folyamat csak abban az esetben indítható újra ha:
+			Valamely modul mégse ûgy mûködött ahogyan az elvárt
+				- Itt lehetséges olyan is, hogy már egy tesztelt - jólmûködõnek hitt funkció hibákat produkál annak hatására ,hogy már az új modul is benne van
+				
+7. Erõforrások|||
+|||||||||||||||||
+
+Ebben a fejezetben azon eszközökrõl lesz szó melyek felhasználhatóak a teszteléshez.
+
+	- Teszt eszközök
+		A fejlesztõi környezet által támogatott egység tesztelõ modul használata
+			- Unity3D-ben
+				- "Editor Tests"
+			- Visual Studio 2015 Community-ben
+				- "NUnit Tests"
+		Az elkészült modul maga amelyet kiadunk alfa, béta .... stb tesztelésre
+		
+	- Személyi erõforrás
+		Másik személyek bevonása a tesztelésbe engedélyezett amennyiben az a személy megfelel az alábbi feltételeknek:
+			- Az adott modult NEM ismeri
+			- Az adott projekten kivüli személy de még cégen belül van
+			- Az adott projekten kivüli személy és már nem is cégen belüli
+				- Ilyen esetben csak a mifelügyeltünk mellett használhatja a szoftvert, hogy nehogy ki szivárogtasson információkat
+				- Illetve alá kell iratni vele egy nyilatkozatot mely aláírásakor a személy elfgoadja azt hogy nem juttat ki másoknak információkat 
+			- Az adott projekten belüli is lehet de ilyen esetben fontos ,hogy úgy tudja használni azt a modult (amennyiben ismeri a hátterét) mint egy "átlag" user
+			
+8. Szerepkörök|||
+|||||||||||||||||
+
+Meghatározott szerepkörök az alábbiak:
+	- Tesztelés vezetõ
+		- Õ az aki minden tesztelési ciklusnak a "fõnöke" - az Õ utasításai szerint kell ejárni
+	- Tesztelés alvezetõ
+		- Õ a kapocs a tesztelés vezetõ és a tesztelõk között
+	- Tesztelõk
+	
+9. Tesztadatok|||
+|||||||||||||||||
+
+
+
+10. Kockázatok|||
+|||||||||||||||||
+
+Olyan információkat tartalmaz ez a fejezet melyeket mindenképpen el kell kerülni - amennyiben ez nem megoldható akkor minimalizálni kell az ilyen "hibákat"
+	Projekten kivüli de cégen belüli egyének bevonáása esetén kerüljük el az alábbiakat:
+		- Forráskód megtekinthetõsége
+		- Teszteletlen modulok maradtak
+		- 
+		
+	Projekten kivüli és cégen kivüli egyének bevonása esetén kerüljük el az alábbiakat:
+		- Forráskód megtekinthetõsége
+		- Szoftverrõl való "nyilatkozás" a médiában
+			(internet, újság, televizó, rádió... stb)
+			
+11. Betanitás|||
+||||||||||||||||
+
+Amennyiben a szoftver (modul) tesztelésének a végére érünk akkor azt az adott blokkot "tanítsuk" meg a felhasználónak (felhasználóknak), hogy hogyan kell használni.
+Erre az alábbi módokat követhetjük:
+	- Szöveges leírás
+	- Szöveges leírás képekkel mellékelve
+	- Tutorial videó készítése
+	- Élõ videóban való bemutatás
+	- Rendezvényen való bemutatás 
+	
