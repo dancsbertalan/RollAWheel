@@ -93,10 +93,23 @@ public class _palyaGombokKezeles : MonoBehaviour
             });
     }
 
+    private void SetAktivSzintDbPrefs(int palyaSorszam)
+    {
+        PlayerPrefs.SetInt(_konstansok.AKTIVSZINT, palyaSorszam);
+        _adatbazisvezerlo.GetPeldany(_konstansok.AdatbazisEleres).FelhasznaloAktivSzintAtir(PlayerPrefs.GetInt(_konstansok.FELHASZNALOID), palyaSorszam);
+    }
+
+    private int GetSorszam(string pStr) {
+        Debug.Log(string.Format("Spltelt: {0}", pStr.Split('P')[1]));
+        return int.Parse(pStr.Split('P')[1]);
+    }
+
     public void Palya1Gomb()
     {
         if (_gombok[0].GetComponentInChildren<Text>().text.ToString() == _konstansok.P1)
         {
+            int sorSz = GetSorszam(_gombok[0].GetComponentInChildren<Text>().text.ToString());
+            SetAktivSzintDbPrefs(sorSz);
             Application.LoadLevel(_konstansok.PALYA_1);
         }
     }
@@ -104,6 +117,8 @@ public class _palyaGombokKezeles : MonoBehaviour
     {
         if (_gombok[1].GetComponentInChildren<Text>().text.ToString() == _konstansok.P2)
         {
+            int sorSz = GetSorszam(_gombok[1].GetComponentInChildren<Text>().text.ToString());
+            SetAktivSzintDbPrefs(sorSz);
             Application.LoadLevel(_konstansok.PALYA_2);
         }
     }
@@ -111,6 +126,7 @@ public class _palyaGombokKezeles : MonoBehaviour
     {
         if (_gombok[2].GetComponentInChildren<Text>().text.ToString() == _konstansok.P3)
         {
+
         }
     }
     public void Palya4Gomb()
