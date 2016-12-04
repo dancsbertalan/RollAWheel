@@ -95,6 +95,8 @@ public class _felhasznalokVezerlo : MonoBehaviour
                 {
                     felhasznaloSzovegek[i].text = olvaso.GetValue(i).ToString();
                 }
+
+
                 felhasznaloPanel.name = panelSorszam.ToString();
                 felhasznaloPanel.transform.SetParent(felhasznalokTrans);
                 felhasznaloPanel.transform.localScale = new Vector3(1, 1, 1);

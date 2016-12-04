@@ -58,6 +58,7 @@ public class _kinezetGombokKezeles : MonoBehaviour
 
     public void Kinezet2Gomb()
     {
+        //ha van annyi pénzünk mint amennyibe ez kerül akkor lefuttathatjuk
         KinezetSetHelper(2);
     }
 

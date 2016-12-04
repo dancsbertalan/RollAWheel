@@ -92,8 +92,12 @@ public class _adatbazisvezerlo
         IDataReader olvaso;
         IDbCommand muvelet;
         muvelet = adatbCsatlakozas.CreateCommand();
-        muvelet.CommandText = "select fh.Nev as 'Név' ,fh.Kor as 'Kor',ki.Nev as 'Aktív kinézet',ja.AktivSzint as 'Aktív szint',ja.Penz as 'Pénz',ja.FelhasznaloID as 'ID'" +
-            "from jatekadat ja inner join felhasznalo fh on ja.FelhasznaloID = fh.ID inner join kinezet ki on ja.AktivKinezetID = ki.ID";
+        /*muvelet.CommandText = "select fh.Nev as 'Név' ,fh.Kor as 'Kor',ki.Nev as 'Aktív kinézet',ja.AktivSzint as 'Aktív szint',ja.Penz as 'Pénz',ja.FelhasznaloID as 'ID'" +
+            "from jatekadat ja inner join felhasznalo fh on ja.FelhasznaloID = fh.ID inner join kinezet ki on ja.AktivKinezetID = ki.ID";*/
+
+
+        muvelet.CommandText = "select fh.Nev as 'Név' ,fh.Kor as 'Kor',ki.Nev as 'Aktív kinézet',pa.Nev as 'Aktív szint',ja.Penz as 'Pénz',ja.FelhasznaloID as 'ID'" +
+            "from jatekadat ja inner join felhasznalo fh on ja.FelhasznaloID = fh.ID inner join kinezet ki on ja.AktivKinezetID = ki.ID inner join Palya pa on ja.AktivSzint = pa.ID";
         olvaso = muvelet.ExecuteReader();
         return olvaso;
     }
@@ -139,7 +143,7 @@ public class _adatbazisvezerlo
     {
         IDbCommand muvelet;
         //kinézet tábla elkészítése
-        string tabla = "CREATE TABLE `Kinezet` (`ID`	INTEGER NOT NULL,`Nev`	TEXT NOT NULL,`Fajlnev`	TEXT, PRIMARY KEY(`ID`))";
+        string tabla = "CREATE TABLE `Kinezet` (`ID`	INTEGER NOT NULL,`Nev`	TEXT NOT NULL,`Fajlnev`	TEXT,`Ar` INTEGER, PRIMARY KEY(`ID`))";
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = tabla;
         muvelet.ExecuteNonQuery();
@@ -166,27 +170,31 @@ public class _adatbazisvezerlo
         muvelet.CommandText = tabla;
         muvelet.ExecuteNonQuery();
 
-        string beszurando = "INSERT INTO `Kinezet` VALUES(1, 'Alap','_1Kerek')";
+        string beszurando = "INSERT INTO `Kinezet` VALUES(1, 'Alap','_1Kerek',0)";
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = beszurando;
         muvelet.ExecuteNonQuery();
 
-        beszurando = "INSERT INTO `Kinezet` VALUES(2, 'Rózsaszín','_2Kerek')";
+        beszurando = "INSERT INTO `Kinezet` VALUES(2, 'Rózsaszín','_2Kerek',50)";
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = beszurando;
         muvelet.ExecuteNonQuery();
 
-        beszurando = "INSERT INTO `Kinezet` VALUES(3, 'Üreges','_3Kerek')";
+        beszurando = "INSERT INTO `Kinezet` VALUES(3, 'Üreges','_3Kerek',100)";
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = beszurando;
         muvelet.ExecuteNonQuery();
 
-        beszurando = "INSERT INTO `Kinezet` VALUES(4, 'Telített','_4Kerek')";
+        beszurando = "INSERT INTO `Kinezet` VALUES(4, 'Telített','_4Kerek',150)";
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = beszurando;
         muvelet.ExecuteNonQuery();
 
-        beszurando = "insert into `Palya` (Nev) values ('Kezdet')";
+        beszurando = "insert into `Palya` (Nev) values ('Kezdés')";
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = beszurando;
+        muvelet.ExecuteNonQuery();
+        beszurando = "insert into `Palya` (Nev) values ('Áthidalás')";
         muvelet = adatbCsatlakozas.CreateCommand();
         muvelet.CommandText = beszurando;
         muvelet.ExecuteNonQuery();
@@ -325,6 +333,15 @@ public class _adatbazisvezerlo
         }
     }
 
+    public void FelhasznaloAktivSzintAtir(int FelhasznaloID,int AktivSzint)
+    {
+        IDbCommand muvelet;
+        string sor = string.Format("update Jatekadat set AktivSzint = {0} where FelhasznaloID = {1}", AktivSzint, FelhasznaloID);
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = sor;
+        muvelet.ExecuteNonQuery();
+    }
+
     public void FelhasznaloPenzAtir(int FelhasznaloID, int PenzErtek)
     {
         IDbCommand muvelet;
@@ -448,6 +465,22 @@ public class _adatbazisvezerlo
         }
     }
 
+    public string GetPalyaNev(int sorszam) {
+        string nev = "";
+
+        IDataReader olvaso;
+        IDbCommand muvelet;
+        muvelet = adatbCsatlakozas.CreateCommand();
+        muvelet.CommandText = string.Format("select nev from Palya where id = {0}", sorszam);
+        olvaso = muvelet.ExecuteReader();
+
+        while (olvaso.Read())
+        {
+            nev = olvaso.GetString(0);
+        }
+        olvaso.Close();
+        return nev;
+    }
 
     #endregion
 
