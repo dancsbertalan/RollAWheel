@@ -98,7 +98,6 @@ public class _konstansok
     public const string KEREK = "Kerek";
     #endregion
 
-
     #region SEGED
     public const string PNG = ".png";
 
@@ -126,5 +125,14 @@ public class _konstansok
         }
     }
     #endregion
+
+    public static void PlayerPrefsTorol() {
+        PlayerPrefs.SetInt(FELHASZNALOID, -1);
+        PlayerPrefs.SetInt(KOR, -1);
+        PlayerPrefs.SetInt(AKTIVKINEZETID, -1);
+        PlayerPrefs.SetInt(AKTIVSZINT, -1);
+        PlayerPrefs.SetInt(PENZ, -1);
+        PlayerPrefs.SetString(NEV, "");
+    }
 
 }

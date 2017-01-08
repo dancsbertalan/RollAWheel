@@ -15,8 +15,17 @@ public class _gombVezerlo : MonoBehaviour
     #region METÓDUSOK
     public void Kilepes()
     {
-        Application.Quit();
-        Debug.Log("Kiléptél");
+        string temp = PlayerPrefs.GetString(_konstansok.NEV);
+        Debug.Log(temp);
+        if (PlayerPrefs.GetString(_konstansok.NEV) == "" || Application.loadedLevelName == _konstansok.FOMENU)
+        {
+            Application.Quit();
+            Debug.Log("Kiléptünk");
+        }
+        else
+        {
+            SceneManager.LoadScene(_konstansok.BEALLITASOK);
+        }
     }
 
     public void Jatek()
@@ -26,7 +35,16 @@ public class _gombVezerlo : MonoBehaviour
 
     public void Beallitasok()
     {
-        SceneManager.LoadScene(_konstansok.BEALLITASOK);
+        string temp = PlayerPrefs.GetString(_konstansok.NEV);
+        Debug.Log(temp);
+        if (PlayerPrefs.GetString(_konstansok.NEV) == "" || PlayerPrefs.GetString(_konstansok.NEV) == null)
+        {
+            Application.Quit();
+        }
+        else
+        {
+            SceneManager.LoadScene(_konstansok.BEALLITASOK);
+        }
     }
 
     public void Kinezetek()

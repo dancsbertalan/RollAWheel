@@ -17,7 +17,7 @@ public class _felhasznalokVezerlo : MonoBehaviour
 
     #region VÁLTOZÓK
     private _adatbazisvezerlo adatbazis;
-    private bool elindultE = false;
+    private static bool nyitottVoltE = false;
 
     public GameObject felhasznalokFoPanel;
     public GameObject felhasznalokPanel;
@@ -28,11 +28,18 @@ public class _felhasznalokVezerlo : MonoBehaviour
     public Transform maszkTrans;
     #endregion
 
+    
+
     #region METÓDUSOK
 
     // Use this for initialization
     void Start()
     {
+        if (nyitottVoltE == false)
+        {
+            nyitottVoltE = true;
+            _konstansok.PlayerPrefsTorol();
+        }
         adatbazis = _adatbazisvezerlo.GetPeldany(_konstansok.AdatbazisEleres);
         FelhasznaloKi();
         felhasznalokGorgeto.value = 1;
@@ -168,6 +175,10 @@ public class _felhasznalokVezerlo : MonoBehaviour
             int felhasznaloID = 0;
             int.TryParse(ped.pointerPress.name, out felhasznaloID);
             adatbazis.FelhasznaloTorlese(felhasznaloID);
+            if (felhasznaloID == PlayerPrefs.GetInt(_konstansok.FELHASZNALOID))
+            {
+                _konstansok.PlayerPrefsTorol();
+            }
             SceneManager.LoadScene(_konstansok.FELHASZNALOK);
         }
     }
