@@ -6,6 +6,20 @@ public class _kerekMozgas : MonoBehaviour
 {
     bool jobb, bal = false;
     public Button Jobbra, Balra;
+    public GameObject csillagok;
+    public GameObject ermek;
+
+    public GameObject penzKep;
+    public GameObject penzSzoveg;
+
+    public GameObject csillagJelzo0;
+    public GameObject csillagJelzo1;
+    public GameObject csillagJelzo2;
+    public GameObject csillagJelzo3;
+    public GameObject csillagJelzo4;
+    public GameObject csillagJelzo5;
+
+
 
     void Start()
     {
@@ -23,7 +37,25 @@ public class _kerekMozgas : MonoBehaviour
             Balra.GetComponentInChildren<CanvasRenderer>().SetAlpha(0);
             Balra.GetComponentInChildren<Text>().color = Color.clear;
         }
+        
+        if (PlayerPrefs.GetString(_konstansok.CSILLAG_MOD) == _konstansok.ERTEK_IGEN)
+        {
+            csillagok.active = true;
+            ermek.active = false;
+            penzKep.active = false;
+            penzKep.active = false;
+            csillagJelzo0.active = true;
+        }
+        else
+        {
+            csillagok.active = false;
+            ermek.active = true;
+            penzKep.active = true;
+            penzKep.active = true;
+        }
     }
+
+    
 
     /// <summary>
     /// Ez a metódus fogja beállítani a felhasználónak a kinézetét. Csak akkor történik változás ,hogy ha 

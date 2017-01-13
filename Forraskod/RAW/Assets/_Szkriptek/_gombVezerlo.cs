@@ -68,7 +68,7 @@ public class _gombVezerlo : MonoBehaviour
             case _konstansok.KINEZETEK:
                 SceneManager.LoadScene(_konstansok.FOMENU);
                 break;
-            
+
         }
         if (Application.loadedLevelName.Split('_')[0] == "palya")
         {
@@ -78,13 +78,22 @@ public class _gombVezerlo : MonoBehaviour
 
     public void SzimplaMod()
     {
-        PlayerPrefs.SetString(_konstansok.SZIMPLA_MOD, _konstansok.SZIMPLA_MOD_ERTEK_IGEN);
+        PlayerPrefs.SetString(_konstansok.SZIMPLA_MOD, _konstansok.ERTEK_IGEN);
+        PlayerPrefs.SetString(_konstansok.CSILLAG_MOD, _konstansok.ERTEK_NEM);
         SceneManager.LoadScene(_konstansok.PALYAVALASZTO);
     }
 
     public void VersenyAzIdovel()
     {
-        PlayerPrefs.SetString(_konstansok.SZIMPLA_MOD, _konstansok.SZIMPLA_MOD_ERTEK_NEM);
+        PlayerPrefs.SetString(_konstansok.SZIMPLA_MOD, _konstansok.ERTEK_NEM);
+        PlayerPrefs.SetString(_konstansok.CSILLAG_MOD, _konstansok.ERTEK_NEM);
+        SceneManager.LoadScene(_konstansok.PALYAVALASZTO);
+    }
+
+    public void CsillagLeszek() {
+        PlayerPrefs.SetString(_konstansok.SZIMPLA_MOD, _konstansok.ERTEK_IGEN); //hogy ne legyen timer
+        PlayerPrefs.SetString(_konstansok.CSILLAG_MOD, _konstansok.ERTEK_IGEN);
+
         SceneManager.LoadScene(_konstansok.PALYAVALASZTO);
     }
 

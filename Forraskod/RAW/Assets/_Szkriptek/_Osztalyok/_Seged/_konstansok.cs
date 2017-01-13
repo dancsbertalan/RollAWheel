@@ -39,8 +39,10 @@ public class _konstansok
     public const int ALAP_AKTIV_SZINT = 1;
     public const int ALAP_AKTIV_KIENZET = 1;
     public const string SZIMPLA_MOD = "SzimplaMod";
-    public const string SZIMPLA_MOD_ERTEK_IGEN = "Igen";
-    public const string SZIMPLA_MOD_ERTEK_NEM = "Nem";
+    public const string CSILLAG_MOD = "CsillagMod";
+    public const string ERTEK_IGEN = "Igen";
+    public const string ERTEK_NEM = "Nem";
+
     #endregion
     #endregion
 
@@ -91,6 +93,8 @@ public class _konstansok
     public const string VEG_ZASZLO = "vegZaszlo";
     public const string PALYA_GOMB = "palyaGomb";
     public const string KINEZET_GOMB = "kinezetGomb";
+    public const string PENZ_KI = "penzKi";
+    public const string CSILLAG_JELZOK = "csillagJelzok";
     #endregion
     #endregion
 
@@ -133,6 +137,7 @@ public class _konstansok
         PlayerPrefs.SetInt(AKTIVSZINT, -1);
         PlayerPrefs.SetInt(PENZ, -1);
         PlayerPrefs.SetString(NEV, "");
+        
     }
 
 }

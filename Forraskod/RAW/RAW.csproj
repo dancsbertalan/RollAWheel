@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="Assets\_Szkriptek\_Osztalyok\_Seged\_konstansok.cs" />
     <Compile Include="Assets\_Szkriptek\_Osztalyok\_adatbazisVezerlo.cs" />
+    <Compile Include="Assets\_Szkriptek\_csillagSzamolas.cs" />
     <Compile Include="Assets\_Szkriptek\_ermeSzamolas.cs" />
     <Compile Include="Assets\_Szkriptek\_felhasznalokVezerlo.cs" />
     <Compile Include="Assets\_Szkriptek\_gombVezerlo.cs" />

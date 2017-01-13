@@ -22,7 +22,7 @@ public class _zaszlo : MonoBehaviour
     {
         idozito = new Timer(_konstansok.TIMER_EGY_MASODPERC);
         string pp = PlayerPrefs.GetString(_konstansok.SZIMPLA_MOD);
-        if (PlayerPrefs.GetString(_konstansok.SZIMPLA_MOD) == _konstansok.SZIMPLA_MOD_ERTEK_NEM)
+        if (PlayerPrefs.GetString(_konstansok.SZIMPLA_MOD) == _konstansok.ERTEK_NEM)
         {
             idozitoTxt.gameObject.active = true;
         }
@@ -31,7 +31,7 @@ public class _zaszlo : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == _konstansok.VEG_ZASZLO && vegeVoltE == false)
+        if (other.tag == _konstansok.VEG_ZASZLO && vegeVoltE == false && PlayerPrefs.GetString(_konstansok.CSILLAG_MOD) == _konstansok.ERTEK_NEM)
         {
             idozito.Close();
             vegeVoltE = true;
@@ -44,7 +44,7 @@ public class _zaszlo : MonoBehaviour
 
             adatbazis.FelhasznaloPenzAtir(PlayerPrefs.GetInt(_konstansok.FELHASZNALOID), PlayerPrefs.GetInt(_konstansok.PENZ));
         }
-        else if (other.tag == _konstansok.KEZD_ZASZLO && (PlayerPrefs.GetString(_konstansok.SZIMPLA_MOD) == _konstansok.SZIMPLA_MOD_ERTEK_NEM))
+        else if (other.tag == _konstansok.KEZD_ZASZLO && (PlayerPrefs.GetString(_konstansok.SZIMPLA_MOD) == _konstansok.ERTEK_NEM) && PlayerPrefs.GetString(_konstansok.CSILLAG_MOD) == _konstansok.ERTEK_NEM)
         {
             vegeVoltE = false;
             /*
@@ -77,7 +77,7 @@ public class _zaszlo : MonoBehaviour
         gyujtottPenzTxt.text = gyujtott.ToString();
         edigiPenzTxt.text = eddigi.ToString();
         osszPenzTxt.text = (eddigi + gyujtott).ToString();
-        if (PlayerPrefs.GetString(_konstansok.SZIMPLA_MOD) == _konstansok.SZIMPLA_MOD_ERTEK_NEM)
+        if (PlayerPrefs.GetString(_konstansok.SZIMPLA_MOD) == _konstansok.ERTEK_NEM)
         {
             int betoltottPalyaID = int.Parse(Application.loadedLevelName.Split('_')[1]);
             int legjobbIdo = -1;
